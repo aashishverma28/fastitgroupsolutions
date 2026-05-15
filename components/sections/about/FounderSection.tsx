@@ -98,7 +98,7 @@ export function FounderSection() {
 
           <blockquote className="relative border-l-4 border-[#E8156D] pl-7 mb-12 max-w-[580px]">
             <p className="font-cormorant italic text-[32px] md:text-[36px] text-[#1A1A1A] leading-[1.5]">
-              "I was a BTech student in Golaghat, Assam. I looked around and asked one question — why isn't great software being built here? I didn't find a good answer. So I stopped looking and started building."
+              "I am a BTech student in Golaghat, Assam. I looked around and asked one question — why isn't great software being built here? I didn't find a good answer. So I stopped looking and started building."
             </p>
             <cite className="block not-italic mt-6">
               <span className="block font-satoshi font-semibold text-[16px] text-[#1A1A1A]">— Aashish Verma</span>
@@ -111,7 +111,7 @@ export function FounderSection() {
               Aashish Verma is not the typical founder story. There was no big city startup. No venture capital pitch deck. No co-working space in Bangalore with a ping-pong table.
             </p>
             <p>
-              There was a BTech CSE student, sitting in Golaghat, Assam — studying at Birangana Sati Sadhani Rajyik Vishwavidyalaya — who looked at the digital landscape of Northeast India and felt something between frustration and determination.
+              There is a BTech CSE student, sitting in Golaghat, Assam — studying at Birangana Sati Sadhani Rajyik Vishwavidyalaya — who looks at the digital landscape of Northeast India and feels something between frustration and determination.
             </p>
             <p>
               The frustration? That businesses in Assam — good, hardworking, legitimate businesses — were being left behind digitally. Not because they didn't want to grow. But because the people who could help them grow weren't here.
@@ -175,7 +175,8 @@ export function FounderSection() {
                   "BTech CSE 🎓"<br/>
                   "Birangana Sati Sadhani"<br/>
                   "Rajyik Vishwavidyalaya"<br/>
-                  "Golaghat, Assam"
+                  "Golaghat, Assam"<br/>
+                  "Class of 2029"
                 </p>
               </div>
 
