@@ -6,10 +6,20 @@ const supabaseAnonKey = 'sb_publishable_p1BQdJrwRBJGN6PwqYVA2g_tTahagif'
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 async function testLogin() {
-  console.log('Attempting login for mainadmin@fastit.in...')
+  const usernameInput = "Mainadmin01"
+  const passwordInput = "Aashish@07"
+
+  // Simulating the internal mapping in the app
+  let loginEmail = usernameInput
+  if (usernameInput.toLowerCase() === "mainadmin01") {
+    loginEmail = "mainadmin01@fastit.com"
+  }
+
+  console.log(`Testing login for username: ${usernameInput} (mapped to: ${loginEmail})...`)
+  
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: 'mainadmin@fastit.in',
-    password: 'Aashish@07',
+    email: loginEmail,
+    password: passwordInput,
   })
 
   if (error) {

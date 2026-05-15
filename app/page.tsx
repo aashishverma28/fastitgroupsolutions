@@ -5,6 +5,8 @@ import { HeroScene } from "@/components/3d/HeroScene"
 import { MagneticButton } from "@/components/ui/MagneticButton"
 import { revealHeadline, glitchText, initColorMorph, staggerCards } from "@/lib/animations"
 import Link from "next/link"
+import DynamicServices from "@/components/cms/DynamicServices"
+import DynamicTeamBoard from "@/components/cms/DynamicTeamBoard"
 
 export default function Home() {
   const headlineRef = useRef<HTMLHeadingElement>(null)
@@ -106,34 +108,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
-            <div className="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-cursor="view">
-              <div className="w-16 h-16 rounded-full bg-[#E8156D]/10 flex items-center justify-center mb-8 text-[#E8156D] group-hover:scale-110 transition-transform">
-                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-4">Web & App Dev</h3>
-              <p className="text-gray-600 font-body leading-relaxed">High-performance React/Next.js platforms and cross-platform mobile applications tailored to your business needs.</p>
-            </div>
-
-            {/* Service Card 2 */}
-            <div className="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-cursor="view">
-              <div className="w-16 h-16 rounded-full bg-[#FFD93D]/20 flex items-center justify-center mb-8 text-[#D4AF00] group-hover:scale-110 transition-transform">
-                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-4">Creative Design</h3>
-              <p className="text-gray-600 font-body leading-relaxed">Immersive 3D experiences, cinematic UI/UX, and brand identities that don't look like everyone else.</p>
-            </div>
-
-            {/* Service Card 3 */}
-            <div className="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-cursor="view">
-              <div className="w-16 h-16 rounded-full bg-[#A8D8EA]/30 flex items-center justify-center mb-8 text-[#2B8EB5] group-hover:scale-110 transition-transform">
-                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM12 8v4l3 3"/></svg>
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-4">Cloud & DevOps</h3>
-              <p className="text-gray-600 font-body leading-relaxed">Scalable cloud architectures, serverless deployments, and bulletproof infrastructure management.</p>
-            </div>
-          </div>
+          <DynamicServices />
         </div>
       </section>
 
@@ -151,29 +126,21 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="relative w-full max-w-5xl min-h-[600px] md:h-[600px] border-4 border-amber-900/10 rounded-3xl bg-[url('https://www.transparenttextures.com/patterns/cork-board.png')] shadow-inner p-8 flex flex-col md:block gap-8">
-            {/* Note 1 */}
-            <div className="relative md:absolute top-0 left-0 md:top-10 md:left-10 bg-[#FFD93D] p-6 shadow-lg md:rotate-3 w-full md:w-64 hover:rotate-0 transition-transform duration-300">
-              <div className="w-4 h-4 rounded-full bg-red-500 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <p className="font-hand text-2xl leading-tight text-black">Client: "Can we make it pop?"<br/><br/>Us: *Adds 10,000 WebGL particles*</p>
+          <div className="relative w-full flex flex-col items-center">
+            <div className="w-full max-w-5xl min-h-[400px] border-4 border-amber-900/10 rounded-3xl bg-[url('https://www.transparenttextures.com/patterns/cork-board.png')] shadow-inner p-8 flex flex-col items-center justify-center relative">
+               <div className="w-4 h-4 rounded-full bg-red-500 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
+               <div className="text-center max-w-xl">
+                  <h3 className="font-display font-bold text-3xl mb-4 text-black">The Fastit Promise</h3>
+                  <ul className="font-hand text-3xl space-y-4 text-black italic">
+                    <li>~ Honest timelines.</li>
+                    <li>~ Transparent pricing.</li>
+                    <li>~ Work we are insanely proud of.</li>
+                  </ul>
+               </div>
             </div>
 
-            {/* Note 2 */}
-            <div className="relative md:absolute bottom-0 right-0 md:bottom-20 md:right-10 bg-[#A8D8EA] p-6 shadow-lg md:-rotate-6 w-full md:w-72 hover:rotate-0 transition-transform duration-300">
-              <div className="w-4 h-4 rounded-full bg-blue-500 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <p className="font-hand text-2xl leading-tight text-black">Reminder:<br/>Quality over quantity. We build apps that people actually enjoy using.</p>
-            </div>
-
-            {/* Note 3 */}
-            <div className="relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 bg-[#FAF9F7] p-8 shadow-2xl md:-rotate-1 w-full md:w-[400px] hover:scale-105 transition-transform duration-500">
-              <div className="w-4 h-4 rounded-full bg-zinc-800 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <h3 className="font-display font-bold text-2xl mb-2 text-black">The Fastit Promise:</h3>
-              <ul className="font-hand text-2xl space-y-2 text-black">
-                <li>1. Honest timelines.</li>
-                <li>2. Transparent pricing.</li>
-                <li>3. Work we are insanely proud of.</li>
-              </ul>
-            </div>
+            {/* Dynamic Members will appear here */}
+            <DynamicTeamBoard />
           </div>
         </div>
       </section>
