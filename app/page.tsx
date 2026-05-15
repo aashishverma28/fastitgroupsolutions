@@ -8,6 +8,8 @@ import Link from "next/link"
 import DynamicServices from "@/components/cms/DynamicServices"
 import DynamicTeamBoard from "@/components/cms/DynamicTeamBoard"
 
+import { Marquee } from "@/components/ui/Marquee"
+
 export default function Home() {
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const glitchRef = useRef<HTMLSpanElement>(null)
@@ -93,6 +95,11 @@ export default function Home() {
           <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          MARQUEE SECTION (DARK BRIDGE)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <Marquee />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           SERVICES PREVIEW (LIGHT)
