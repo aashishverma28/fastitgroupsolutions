@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { MeshDistortMaterial, Float, Environment, ContactShadows, MeshTransmissionMaterial } from "@react-three/drei"
+import { MeshDistortMaterial, Float, Environment, ContactShadows, MeshTransmissionMaterial, Html } from "@react-three/drei"
 import * as THREE from "three"
 import { revealHeadline, initCardTilt, staggerCards } from "@/lib/animations"
 import Link from "next/link"
@@ -22,7 +22,7 @@ function ProjectPreview3D() {
       <pointLight position={[10, 10, 10]} intensity={1} />
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
         <mesh ref={meshRef}>
-          <boxGeometry args={[3, 2, 0.1]} />
+          <boxGeometry args={[3.2, 2.2, 0.1]} />
           <MeshTransmissionMaterial 
             transmission={0.9} 
             thickness={0.5} 
@@ -32,11 +32,26 @@ function ProjectPreview3D() {
             distortion={0.1}
             color="#E8156D"
           />
-          {/* Inner content simulation */}
-          <mesh position={[0, 0, 0.06]}>
-            <planeGeometry args={[2.8, 1.8]} />
-            <meshStandardMaterial color="#000000" emissive="#E8156D" emissiveIntensity={0.2} />
-          </mesh>
+          {/* Embedding the actual website */}
+          <Html
+            transform
+            occlude
+            distanceFactor={2}
+            position={[0, 0, 0.06]}
+            style={{
+              width: '800px',
+              height: '500px',
+              backgroundColor: '#000',
+              overflow: 'hidden',
+              borderRadius: '10px'
+            }}
+          >
+            <iframe 
+              src="https://fastitmusic.in" 
+              className="w-full h-full border-none"
+              title="Fastit Music India Preview"
+            />
+          </Html>
         </mesh>
       </Float>
       <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
