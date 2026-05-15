@@ -7,8 +7,11 @@
   --color-fastit-light: #FAF9F7;
   
   --font-display: 'Clash Display', 'Sora', sans-serif;
+  --font-satoshi: 'Satoshi', 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Satoshi', 'Plus Jakarta Sans', sans-serif;
   --font-hand: 'Caveat', cursive;
+  --font-caveat: 'Caveat', cursive;
+  --font-cormorant: 'Cormorant Garamond', serif;
 }
 
 @layer base {

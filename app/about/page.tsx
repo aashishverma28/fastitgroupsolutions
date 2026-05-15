@@ -1,58 +1,55 @@
-"use client"
+import { Metadata } from "next"
+import { AboutHero } from "@/components/sections/about/AboutHero"
+import { FounderSection } from "@/components/sections/about/FounderSection"
+import { CompanyStory } from "@/components/sections/about/CompanyStory"
+import { ValuesSection } from "@/components/sections/about/ValuesSection"
+import { OfficeSection } from "@/components/sections/about/OfficeSection"
+import { AboutTimeline } from "@/components/sections/about/AboutTimeline"
+import { AboutCTA } from "@/components/sections/about/AboutCTA"
+import { BlobDivider } from "@/components/ui/BlobDivider"
 
-import { useEffect, useRef } from "react"
-import { AboutScene } from "@/components/3d/AboutScene"
-import { revealHeadline, initParallax, staggerCards } from "@/lib/animations"
+export const metadata: Metadata = {
+  title: "About Us | Fastit Group of Solutions — Real People, Real Tech from Dergaon, Assam",
+  description: "Meet Aashish Verma and the team behind Fastit Group of Solutions. We are building world-class software, web, and app experiences from Dergaon, Golaghat, Assam.",
+  openGraph: {
+    title: "The Human Story of Fastit Group of Solutions",
+    description: "From a BTech student in Golaghat to a software group in Dergaon. Read our story.",
+    images: [{ url: "/logo.png" }]
+  }
+}
 
-export default function About() {
-  const headlineRef = useRef<HTMLHeadingElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (headlineRef.current) revealHeadline(headlineRef.current)
-    initParallax()
-    if (statsRef.current) staggerCards(statsRef.current.children as any)
-  }, [])
-
+export default function AboutPage() {
   return (
-    <main className="relative w-full min-h-screen bg-[#FAF9F7] overflow-hidden pt-32 pb-20 text-[#0A0A0A]">
-      <div className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none">
-        <AboutScene />
-      </div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <h1 ref={headlineRef} className="text-6xl md:text-8xl lg:text-[110px] font-display font-bold leading-[0.9] tracking-tight mb-12">
-          Rooted in <span className="font-hand text-[#E8156D] italic">Assam.</span>
-          <br />Built for the World.
-        </h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
-          <div data-parallax="15" className="bg-white p-10 rounded-3xl border border-gray-100 shadow-xl">
-            <h3 className="font-display text-3xl font-bold mb-6 text-[#0A0A0A]">Our Story</h3>
-            <p className="font-body text-lg text-gray-700 leading-relaxed mb-6">
-              Founded in Dergaon, Fastit Group of Solutions started with a simple belief: world-class technology shouldn't be restricted to massive metro cities. We built a team of exceptional talent right here in Golaghat, proving that great code knows no geographical bounds.
-            </p>
-            <p className="font-body text-lg text-gray-700 leading-relaxed">
-              We focus on building resilient software, beautiful web experiences, and scalable applications that solve real human problems. No jargon, just results.
-            </p>
-          </div>
-          
-          <div ref={statsRef} className="grid grid-cols-2 gap-6">
-            <div className="bg-[#E8156D] text-white p-8 rounded-3xl flex flex-col justify-center items-center text-center shadow-lg">
-              <span className="text-6xl font-display font-bold mb-2">50+</span>
-              <span className="font-body text-sm uppercase tracking-widest opacity-80">Projects Delivered</span>
-            </div>
-            <div className="bg-[#FFD93D] text-[#0A0A0A] p-8 rounded-3xl flex flex-col justify-center items-center text-center shadow-lg">
-              <span className="text-6xl font-display font-bold mb-2">100%</span>
-              <span className="font-body text-sm uppercase tracking-widest opacity-80">In-house Talent</span>
-            </div>
-            <div className="bg-[#A8D8EA] text-[#0A0A0A] p-8 rounded-3xl flex flex-col justify-center items-center text-center shadow-lg col-span-2">
-              <span className="text-4xl font-display font-bold mb-2">Zero Templates</span>
-              <span className="font-body text-sm uppercase tracking-widest opacity-80">Every line of code crafted with intent</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <main className="relative w-full overflow-hidden bg-[#FAF9F7]">
+      {/* 01. HERO SECTION */}
+      <AboutHero />
+
+      {/* 02. FOUNDER SECTION */}
+      <FounderSection />
+
+      {/* DIVIDER: Transition from Founder (Light) to Company (Dark) */}
+      <BlobDivider fromColor="#FAF9F7" toColor="#0F0F0F" />
+
+      {/* 03. COMPANY STORY */}
+      <CompanyStory />
+
+      {/* DIVIDER: Transition from Company (Dark) to Values (Darker) */}
+      <div className="h-[1px] w-full bg-white/5" />
+
+      {/* 04. VALUES SECTION */}
+      <ValuesSection />
+
+      {/* DIVIDER: Transition from Values (Dark) to Offices (Light) */}
+      <BlobDivider fromColor="#0A0A0A" toColor="#FAF9F7" />
+
+      {/* 05. OFFICES SECTION */}
+      <OfficeSection />
+
+      {/* 06. TIMELINE SECTION */}
+      <AboutTimeline />
+
+      {/* 07. CTA SECTION */}
+      <AboutCTA />
     </main>
   )
 }
