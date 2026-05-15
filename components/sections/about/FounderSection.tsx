@@ -7,6 +7,8 @@ import { initCardTilt } from "@/lib/animations"
 import { Canvas } from "@react-three/fiber"
 import { Float, MeshDistortMaterial } from "@react-three/drei"
 
+import Image from "next/image"
+
 export function FounderSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const leftColRef = useRef<HTMLDivElement>(null)
@@ -153,9 +155,14 @@ export function FounderSection() {
             {/* Collage Container */}
             <div className="relative w-[320px] h-[400px]">
               {/* Element A — Main founder photo card */}
-              <div className="main-card absolute inset-0 bg-[#E8156D] rounded-[16px] flex items-center justify-center shadow-[0_20px_60px_rgba(232,21,109,0.25)] outline outline-3 outline-[#E8156D] outline-offset-8 z-20">
-                <span className="font-display font-extrabold text-[80px] text-white">AV</span>
-                <div className="card-shine absolute inset-0 pointer-events-none rounded-[16px]" />
+              <div className="main-card absolute inset-0 bg-[#E8156D] rounded-[16px] overflow-hidden shadow-[0_20px_60px_rgba(232,21,109,0.25)] outline outline-3 outline-[#E8156D] outline-offset-8 z-20">
+                <Image 
+                  src="/founder.jpg" 
+                  alt="Aashish Verma" 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="card-shine absolute inset-0 pointer-events-none rounded-[16px] z-10" />
               </div>
 
               {/* Element B — Education sticky note */}
