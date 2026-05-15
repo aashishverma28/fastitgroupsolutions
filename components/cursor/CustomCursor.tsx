@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
 export function CustomCursor() {
@@ -9,8 +9,22 @@ export function CustomCursor() {
   const label = useRef<HTMLSpanElement>(null)
   const pos = useRef({ x: 0, y: 0 })
   const ring_pos = useRef({ x: 0, y: 0 })
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
+    const checkDesktop = () => {
+      const desktop = window.innerWidth >= 768
+      setIsDesktop(desktop)
+      if (desktop) {
+        document.body.style.cursor = "none"
+      } else {
+        document.body.style.cursor = "auto"
+      }
+    }
+
+    checkDesktop()
+    window.addEventListener("resize", checkDesktop)
+    
     if (window.innerWidth < 768) return
     document.body.style.cursor = "none"
 
@@ -66,8 +80,11 @@ export function CustomCursor() {
       document.body.style.cursor = "auto"
       cancelAnimationFrame(raf)
       window.removeEventListener("mousemove", move)
+      window.removeEventListener("resize", checkDesktop)
     }
   }, [])
+
+  if (!isDesktop) return null
 
   return (
     <>
