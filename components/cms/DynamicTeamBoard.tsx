@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabase"
-import { Linkedin, User } from "lucide-react"
+import { Link2, User } from "lucide-react"
 
 interface TeamMember {
   id: string
@@ -66,7 +66,7 @@ export default function DynamicTeamBoard() {
               target="_blank" 
               className="inline-flex items-center gap-2 text-[#0077b5] hover:opacity-80 transition-opacity"
              >
-               <Linkedin className="w-4 h-4" />
+               <Link2 className="w-4 h-4" />
                <span className="font-hand text-lg font-bold underline decoration-dotted">Connect</span>
              </a>
            )}

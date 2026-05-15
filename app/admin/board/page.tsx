@@ -11,7 +11,7 @@ import {
   X,
   Check,
   Users,
-  Linkedin
+  Link2
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
@@ -161,7 +161,7 @@ export default function TeamBoardPage() {
                   </div>
                   {member.linkedin_url && (
                     <a href={member.linkedin_url} target="_blank" className="text-[#0077b5] hover:scale-110 transition-transform">
-                      <Linkedin className="w-4 h-4" />
+                      <Link2 className="w-4 h-4" />
                     </a>
                   )}
                 </div>

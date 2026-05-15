@@ -10,9 +10,9 @@ import {
   Mail,
   MapPin,
   Globe,
-  Instagram,
-  Facebook,
-  Twitter
+  Camera,
+  Share2,
+  Send
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
@@ -144,14 +144,14 @@ export default function SettingsPage() {
             {/* Social Media */}
             <div className="bg-white/5 border border-white/5 rounded-[40px] p-10 space-y-8">
               <h2 className="text-2xl font-display font-bold text-white flex items-center gap-3">
-                <Instagram className="w-6 h-6 text-[#E8156D]" /> Social Links
+                <Camera className="w-6 h-6 text-[#E8156D]" /> Social Links
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Instagram</label>
                   <div className="relative">
-                    <Instagram className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                    <Camera className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
                     <input 
                       type="url" 
                       value={settings['social_instagram'] || ""}
@@ -163,7 +163,7 @@ export default function SettingsPage() {
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Facebook</label>
                   <div className="relative">
-                    <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+                    <Share2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
                     <input 
                       type="url" 
                       value={settings['social_facebook'] || ""}

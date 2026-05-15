@@ -11,7 +11,8 @@ import {
   ExternalLink,
   Loader2,
   X,
-  Check
+  Check,
+  Briefcase
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { gsap } from "gsap"
