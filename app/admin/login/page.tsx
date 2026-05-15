@@ -8,7 +8,7 @@ import gsap from "gsap"
 import Link from "next/link"
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -41,9 +41,15 @@ export default function AdminLogin() {
     setLoading(true)
     setError(null)
 
+    // Map username to internal email
+    let loginEmail = username
+    if (username.toLowerCase() === "mainadmin01") {
+      loginEmail = "mainadmin01@fastit.com"
+    }
+
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email,
+        email: loginEmail,
         password,
       })
 
@@ -81,19 +87,19 @@ export default function AdminLogin() {
           <div className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-20deg] group-hover:left-[100%] transition-all duration-1000 pointer-events-none" />
 
           <h1 className="text-3xl font-display font-bold text-white mb-2">Welcome Back.</h1>
-          <p className="text-gray-400 font-body mb-8">Enter your credentials to access the portal.</p>
+          <p className="text-gray-400 font-body mb-8">Enter your username to access the portal.</p>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-1">Email Address</label>
+              <label className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-1">Username</label>
               <div className="relative group/input">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within/input:text-[#E8156D] transition-colors" />
                 <input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type="text" 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
-                  placeholder="admin@fastit.com"
+                  placeholder="Mainadmin01"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white font-body focus:outline-none focus:border-[#E8156D] focus:ring-1 focus:ring-[#E8156D]/50 transition-all placeholder:opacity-30"
                 />
               </div>
