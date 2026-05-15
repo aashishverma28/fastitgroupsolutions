@@ -77,14 +77,14 @@ export const TIER_CONFIG = {
     antialias: false,
   },
   low: {
-    enable3D: false,
+    enable3D: true,
     dpr: [1, 1] as [number, number],
     particles: 0,
     postProcessing: false,
     bloom: false,
     chromaticAberration: false,
     shadows: false,
-    geometrySegments: 16,
+    geometrySegments: 24,
     antialias: false,
   },
   none: {

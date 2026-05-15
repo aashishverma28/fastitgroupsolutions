@@ -60,7 +60,7 @@ export default function Home() {
             
             <h1 
               ref={headlineRef}
-              className="text-6xl md:text-8xl lg:text-[110px] font-display font-bold text-white leading-[0.9] tracking-tight mb-8"
+              className="text-4xl sm:text-6xl md:text-8xl lg:text-[110px] font-display font-bold text-white leading-[0.9] tracking-tight mb-8"
             >
               We Build
               <br />
@@ -97,9 +97,9 @@ export default function Home() {
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="services" className="relative w-full py-32 bg-[#FAF9F7] text-[#0A0A0A]">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <h2 className="text-5xl md:text-7xl font-display font-bold leading-tight max-w-2xl">
-              Engineering <span className="font-hand text-[#E8156D] font-normal text-6xl md:text-8xl italic">Solutions</span> that matter.
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold leading-tight max-w-2xl">
+              Engineering <span className="font-hand text-[#E8156D] font-normal text-5xl sm:text-6xl md:text-8xl italic">Solutions</span> that matter.
             </h2>
             <Link href="/services" className="text-sm font-bold tracking-widest uppercase border-b-2 border-[#0A0A0A] pb-1 hover:text-[#E8156D] hover:border-[#E8156D] transition-colors">
               View All Capabilities
@@ -151,24 +151,24 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="relative w-full max-w-5xl h-[600px] border-4 border-amber-900/10 rounded-3xl bg-[url('https://www.transparenttextures.com/patterns/cork-board.png')] shadow-inner p-8">
+          <div className="relative w-full max-w-5xl min-h-[600px] md:h-[600px] border-4 border-amber-900/10 rounded-3xl bg-[url('https://www.transparenttextures.com/patterns/cork-board.png')] shadow-inner p-8 flex flex-col md:block gap-8">
             {/* Note 1 */}
-            <div className="absolute top-10 left-10 bg-[#FFD93D] p-6 shadow-lg rotate-3 w-64 hover:rotate-0 transition-transform duration-300">
+            <div className="relative md:absolute top-0 left-0 md:top-10 md:left-10 bg-[#FFD93D] p-6 shadow-lg md:rotate-3 w-full md:w-64 hover:rotate-0 transition-transform duration-300">
               <div className="w-4 h-4 rounded-full bg-red-500 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <p className="font-hand text-2xl leading-tight">Client: "Can we make it pop?"<br/><br/>Us: *Adds 10,000 WebGL particles*</p>
+              <p className="font-hand text-2xl leading-tight text-black">Client: "Can we make it pop?"<br/><br/>Us: *Adds 10,000 WebGL particles*</p>
             </div>
 
             {/* Note 2 */}
-            <div className="absolute bottom-20 right-10 bg-[#A8D8EA] p-6 shadow-lg -rotate-6 w-72 hover:rotate-0 transition-transform duration-300">
+            <div className="relative md:absolute bottom-0 right-0 md:bottom-20 md:right-10 bg-[#A8D8EA] p-6 shadow-lg md:-rotate-6 w-full md:w-72 hover:rotate-0 transition-transform duration-300">
               <div className="w-4 h-4 rounded-full bg-blue-500 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <p className="font-hand text-2xl leading-tight">Reminder:<br/>Quality over quantity. We build apps that people actually enjoy using.</p>
+              <p className="font-hand text-2xl leading-tight text-black">Reminder:<br/>Quality over quantity. We build apps that people actually enjoy using.</p>
             </div>
 
             {/* Note 3 */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FAF9F7] p-8 shadow-2xl -rotate-1 w-[400px] hover:scale-105 transition-transform duration-500">
+            <div className="relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 bg-[#FAF9F7] p-8 shadow-2xl md:-rotate-1 w-full md:w-[400px] hover:scale-105 transition-transform duration-500">
               <div className="w-4 h-4 rounded-full bg-zinc-800 absolute -top-2 left-1/2 -translate-x-1/2 shadow-sm" />
-              <h3 className="font-display font-bold text-2xl mb-2">The Fastit Promise:</h3>
-              <ul className="font-hand text-2xl space-y-2">
+              <h3 className="font-display font-bold text-2xl mb-2 text-black">The Fastit Promise:</h3>
+              <ul className="font-hand text-2xl space-y-2 text-black">
                 <li>1. Honest timelines.</li>
                 <li>2. Transparent pricing.</li>
                 <li>3. Work we are insanely proud of.</li>
@@ -184,8 +184,8 @@ export default function Home() {
       <section id="cta" className="relative w-full py-40 bg-[#E8156D] text-white overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-8 leading-[0.85]">
-            Ready to <br/> <span className="font-hand lowercase italic font-normal text-7xl md:text-[120px] tracking-normal">start?</span>
+          <h2 className="text-5xl sm:text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-8 leading-[0.85]">
+            Ready to <br/> <span className="font-hand lowercase italic font-normal text-6xl sm:text-7xl md:text-[120px] tracking-normal">start?</span>
           </h2>
           <p className="text-xl md:text-2xl font-body max-w-xl mx-auto mb-12 opacity-90">
             Drop by our office in Dergaon, or let's jump on a call. Your next big idea deserves the right team.

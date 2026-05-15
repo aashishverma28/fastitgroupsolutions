@@ -25,7 +25,7 @@ import { getPerformanceTier, TIER_CONFIG } from "@/lib/performance"
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // THE MAIN ORB — Breathing morphing centerpiece
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-function MainOrb() {
+function MainOrb({ segments }: { segments: number }) {
   const mesh = useRef<THREE.Mesh>(null)
   const mat = useRef<any>(null)
   const mouse = useRef({ x: 0, y: 0 })
@@ -65,7 +65,7 @@ function MainOrb() {
   return (
     <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.6}>
       <mesh ref={mesh} castShadow>
-        <sphereGeometry args={[1.6, 128, 128]} />
+        <sphereGeometry args={[1.6, segments, segments]} />
         <MeshDistortMaterial
           ref={mat}
           color="#E8156D"
@@ -220,9 +220,11 @@ function CinematicCamera() {
   const { camera } = useThree()
   
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
     camera.position.set(0, 0, 14)
     gsap.to(camera.position, {
-      z: 5.5, y: 0.5,
+      z: isMobile ? 7.5 : 5.5, 
+      y: isMobile ? 0.2 : 0.5,
       duration: 2.8,
       ease: "power3.out",
       delay: 0.2,
@@ -282,7 +284,7 @@ export function HeroScene() {
       <Suspense fallback={null}>
         <CinematicCamera />
         <DynamicLights />
-        <MainOrb />
+        <MainOrb segments={config.geometrySegments} />
         <GlassRing />
         <OrbitalShards />
         {config.particles > 0 && (

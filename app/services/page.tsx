@@ -27,9 +27,9 @@ export default function Services() {
   return (
     <main className="relative w-full min-h-screen bg-[#0A0A0A] overflow-hidden pt-32 pb-20 text-white">
       <div className="container mx-auto px-6">
-        <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-bold leading-tight mb-20">
+        <h1 ref={headlineRef} className="text-4xl sm:text-6xl md:text-8xl font-display font-bold leading-tight mb-20">
           We don't just write code.
-          <br /><span className="font-hand text-[#A8D8EA] italic">We engineer solutions.</span>
+          <br /><span className="font-hand text-[#A8D8EA] italic text-5xl sm:text-7xl">We engineer solutions.</span>
         </h1>
         
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
