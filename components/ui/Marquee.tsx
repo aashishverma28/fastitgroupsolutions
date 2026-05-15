@@ -3,20 +3,21 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 
-const MARQUEE_ITEMS = [
-  "Web Development",
-  "App Development",
-  "UI/UX Design",
-  "Cloud Solutions",
-  "Digital Strategy",
-  "Custom Software",
-  "E-Commerce",
-  "Product Engineering",
-  "SEO Optimization",
-  "Brand Identity"
-]
+interface MarqueeProps {
+  items: string[]
+  speed?: number
+  className?: string
+  bg?: string
+  textColor?: string
+}
 
-export function Marquee() {
+export function Marquee({ 
+  items, 
+  speed = 30, 
+  className = "", 
+  bg = "bg-[#0A0A0A]", 
+  textColor = "text-white/20" 
+}: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -24,12 +25,11 @@ export function Marquee() {
     if (!containerRef.current || !trackRef.current) return
 
     const track = trackRef.current
-    const items = track.children
-    const totalWidth = track.scrollWidth / 2 // Since we duplicate items
+    const totalWidth = track.scrollWidth / 2
 
     const tl = gsap.to(track, {
       x: `-=${totalWidth}`,
-      duration: 30,
+      duration: speed,
       ease: "none",
       repeat: -1,
     })
@@ -45,30 +45,21 @@ export function Marquee() {
       containerRef.current?.removeEventListener("mouseenter", onMouseEnter)
       containerRef.current?.removeEventListener("mouseleave", onMouseLeave)
     }
-  }, [])
+  }, [items, speed])
 
   return (
     <div 
       ref={containerRef}
-      className="relative w-full bg-[#0A0A0A] py-8 md:py-12 overflow-hidden border-y border-white/5"
+      className={`relative w-full ${bg} py-8 md:py-12 overflow-hidden border-y border-white/5 ${className}`}
     >
       <div 
         ref={trackRef}
         className="flex whitespace-nowrap items-center"
       >
-        {/* First set of items */}
-        {MARQUEE_ITEMS.map((item, i) => (
-          <div key={`m1-${i}`} className="flex items-center">
-            <span className="font-display text-4xl md:text-7xl font-bold text-white/20 px-8 hover:text-[#E8156D] transition-colors duration-500 uppercase tracking-tighter">
-              {item}
-            </span>
-            <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#E8156D] opacity-40 mx-4" />
-          </div>
-        ))}
-        {/* Duplicated set for infinite effect */}
-        {MARQUEE_ITEMS.map((item, i) => (
-          <div key={`m2-${i}`} className="flex items-center">
-            <span className="font-display text-4xl md:text-7xl font-bold text-white/20 px-8 hover:text-[#E8156D] transition-colors duration-500 uppercase tracking-tighter">
+        {/* Double the items for seamless loop */}
+        {[...items, ...items].map((item, i) => (
+          <div key={`${item}-${i}`} className="flex items-center">
+            <span className={`font-display text-4xl md:text-7xl font-bold ${textColor} px-8 hover:text-[#E8156D] transition-colors duration-500 uppercase tracking-tighter`}>
               {item}
             </span>
             <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#E8156D] opacity-40 mx-4" />

@@ -18,11 +18,31 @@ export const metadata: Metadata = {
   }
 }
 
+import { Marquee } from "@/components/ui/Marquee"
+
 export default function AboutPage() {
   return (
     <main className="relative w-full overflow-hidden bg-[#FAF9F7]">
       {/* 01. HERO SECTION */}
       <AboutHero />
+
+      <Marquee 
+        items={[
+          "Real People",
+          "Honest Engineering",
+          "Built in Assam",
+          "Human-Centric",
+          "Vision Driven",
+          "No Templates",
+          "Class of 2029",
+          "Digital Infrastructure",
+          "Dergaon Roots",
+          "Global Standards"
+        ]}
+        bg="bg-[#FAF9F7]"
+        textColor="text-[#0A0A0A]/10"
+        speed={40}
+      />
 
       {/* 02. FOUNDER SECTION */}
       <FounderSection />

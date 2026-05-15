@@ -99,7 +99,18 @@ export default function Home() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           MARQUEE SECTION (DARK BRIDGE)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <Marquee />
+      <Marquee items={[
+        "Web Development",
+        "App Development",
+        "UI/UX Design",
+        "Cloud Solutions",
+        "Digital Strategy",
+        "Custom Software",
+        "E-Commerce",
+        "Product Engineering",
+        "SEO Optimization",
+        "Brand Identity"
+      ]} />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           SERVICES PREVIEW (LIGHT)
