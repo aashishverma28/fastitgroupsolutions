@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { Lock, Mail, Loader2, ArrowRight } from "lucide-react"
 import gsap from "gsap"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function AdminLogin() {
@@ -73,9 +74,16 @@ export default function AdminLogin() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#FFD93D]/5 blur-[120px] animate-pulse delay-700" />
       
       <div className="w-full max-w-md relative z-10">
-        <div ref={logoRef} className="text-center mb-12">
-          <Link href="/" className="font-display font-bold text-3xl tracking-tighter text-white">
-            FASTIT. <span className="text-xs tracking-widest uppercase opacity-40 ml-2">Admin</span>
+        <div ref={logoRef} className="flex flex-col items-center mb-12">
+          <Link href="/" className="flex items-center gap-3">
+            <Image 
+              src="/logo.png" 
+              alt="FASTIT Logo" 
+              width={160} 
+              height={50} 
+              className="h-10 w-auto object-contain brightness-0 invert" 
+            />
+            <span className="text-xs tracking-widest uppercase opacity-40 border-l border-white/20 pl-3">Admin</span>
           </Link>
         </div>
 

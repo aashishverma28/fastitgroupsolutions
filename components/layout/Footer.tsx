@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -12,7 +13,15 @@ export function Footer() {
     <footer className="w-full bg-[#0A0A0A] text-white py-20 px-6 border-t border-white/10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <h2 className="text-4xl font-display font-bold mb-6">FASTIT.</h2>
+          <div className="mb-6">
+            <Image 
+              src="/logo.png" 
+              alt="FASTIT Logo" 
+              width={180} 
+              height={50} 
+              className="h-10 w-auto object-contain brightness-0 invert" 
+            />
+          </div>
           <p className="font-body text-gray-400 max-w-sm">
             Engineering digital realities from the heart of Assam. We build resilient software and beautiful web experiences.
           </p>

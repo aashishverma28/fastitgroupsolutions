@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
@@ -33,8 +34,15 @@ export function Navbar() {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white">
         <div className="container mx-auto px-6 py-6 flex justify-between items-center">
-          <Link href="/" className="font-display font-bold text-2xl tracking-tighter relative z-[60]">
-            FASTIT.
+          <Link href="/" className="relative z-[60]">
+            <Image 
+              src="/logo.png" 
+              alt="FASTIT Logo" 
+              width={150} 
+              height={40} 
+              className="h-8 w-auto object-contain brightness-0 invert" 
+              priority
+            />
           </Link>
           
           {/* Desktop Menu */}
