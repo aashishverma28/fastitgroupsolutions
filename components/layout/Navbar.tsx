@@ -41,6 +41,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-8 font-bold text-sm tracking-widest uppercase">
             <Link href="/about" className="hover:text-[#E8156D] transition-colors">About</Link>
             <Link href="/services" className="hover:text-[#E8156D] transition-colors">Services</Link>
+            <Link href="/demo" className="hover:text-[#E8156D] transition-colors">Demo</Link>
             <Link href="/work" className="hover:text-[#E8156D] transition-colors">Work</Link>
             <Link href="/blog" className="hover:text-[#E8156D] transition-colors">Blog</Link>
             <Link href="/contact" className="px-5 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all">Let's Talk</Link>
@@ -63,6 +64,7 @@ export function Navbar() {
         <div className="flex flex-col items-center gap-8 text-4xl font-display font-bold text-white uppercase tracking-tighter">
           <Link href="/about" className="mobile-link hover:text-[#E8156D]">About</Link>
           <Link href="/services" className="mobile-link hover:text-[#E8156D]">Services</Link>
+          <Link href="/demo" className="mobile-link hover:text-[#E8156D]">Demo</Link>
           <Link href="/work" className="mobile-link hover:text-[#E8156D]">Work</Link>
           <Link href="/blog" className="mobile-link hover:text-[#E8156D]">Blog</Link>
           <Link href="/contact" className="mobile-link text-[#E8156D] border-t border-white/10 pt-8 w-full text-center">Let's Talk</Link>
