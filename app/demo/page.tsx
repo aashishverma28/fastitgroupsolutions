@@ -1,12 +1,14 @@
 "use client"
 
-import { useEffect, useRef, Suspense } from "react"
+import { useEffect, useRef, Suspense, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, Environment, MeshTransmissionMaterial, ContactShadows } from "@react-three/drei"
 import * as THREE from "three"
 import { revealHeadline, staggerCards, initCardTilt } from "@/lib/animations"
+import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 import Link from "next/link"
+import { Loader2 } from "lucide-react"
 
 function DemoScene() {
   const meshRef = useRef<THREE.Mesh>(null!)
@@ -44,37 +46,46 @@ function DemoScene() {
   )
 }
 
-const demos = [
-  {
-    id: 1,
-    title: "Music Distribution Dashboard",
-    desc: "A futuristic SaaS interface for independent labels to manage their digital assets with real-time analytics.",
-    image: "/images/demo/demo_1.png",
-    category: "Product Design",
-    link: "#"
-  },
-  {
-    id: 2,
-    title: "AI Fitness App",
-    desc: "A mobile-first health platform that uses neural networks to track and optimize workout routines.",
-    image: "/images/demo/demo_2.png",
-    category: "Mobile UI/UX",
-    link: "#"
-  }
-]
+interface DemoProject {
+  id: string
+  title: string
+  description: string
+  category: string
+  image_url: string
+  demo_link: string
+}
 
 export default function DemoPage() {
+  const [demos, setDemos] = useState<DemoProject[]>([])
+  const [loading, setLoading] = useState(true)
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (headlineRef.current) revealHeadline(headlineRef.current)
-    if (gridRef.current) {
-      const cards = gridRef.current.children
-      staggerCards(cards as any)
-      Array.from(cards).forEach(card => initCardTilt(card as HTMLElement))
+    const fetchDemos = async () => {
+      const { data, error } = await supabase
+        .from('demo_projects')
+        .select('*')
+        .order('order_index', { ascending: true })
+      
+      if (!error && data) {
+        setDemos(data)
+      }
+      setLoading(false)
     }
+    fetchDemos()
   }, [])
+
+  useEffect(() => {
+    if (!loading) {
+      if (headlineRef.current) revealHeadline(headlineRef.current)
+      if (gridRef.current) {
+        const cards = gridRef.current.children
+        staggerCards(cards as any)
+        Array.from(cards).forEach(card => initCardTilt(card as HTMLElement))
+      }
+    }
+  }, [loading])
 
   return (
     <main className="relative w-full min-h-screen bg-[#080808] text-white overflow-hidden pt-32 pb-20">
@@ -102,43 +113,56 @@ export default function DemoPage() {
 
       {/* Demo Grid */}
       <section className="container mx-auto px-6">
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {demos.map((demo) => (
-            <div key={demo.id} className="group relative rounded-[30px] overflow-hidden bg-[#111] border border-white/5 flex flex-col cursor-crosshair">
-              {/* Card Shine */}
-              <div className="card-shine absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
-                <Image 
-                  src={demo.image} 
-                  alt={demo.title} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-60" />
-              </div>
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-32 gap-6 text-white/20">
+            <Loader2 className="w-16 h-16 animate-spin text-[#E8156D]" />
+            <p className="font-display text-xl font-bold tracking-widest uppercase">Fetching Prototypes...</p>
+          </div>
+        ) : demos.length === 0 ? (
+          <div className="text-center py-32 border border-dashed border-white/10 rounded-[40px] bg-white/5">
+             <p className="text-white/40 text-xl font-display">New demos are currently being uploaded.</p>
+          </div>
+        ) : (
+          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {demos.map((demo) => (
+              <div key={demo.id} className="group relative rounded-[30px] overflow-hidden bg-[#111] border border-white/5 flex flex-col cursor-crosshair">
+                <div className="card-shine absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative h-[300px] sm:h-[400px] overflow-hidden bg-white/5">
+                  {demo.image_url && (
+                    <Image 
+                      src={demo.image_url} 
+                      alt={demo.title} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-60" />
+                </div>
 
-              <div className="p-8 lg:p-12 relative z-10">
-                <span className="text-[#E8156D] text-xs font-bold uppercase tracking-[0.3em] mb-4 block">
-                  {demo.category}
-                </span>
-                <h3 className="text-3xl font-display font-bold mb-4">{demo.title}</h3>
-                <p className="text-white/40 text-lg leading-relaxed mb-8">
-                  {demo.desc}
-                </p>
-                <Link 
-                  href={demo.link} 
-                  className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest group-hover:text-[#E8156D] transition-colors"
-                >
-                  View Prototype
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M5 12h14m-7-7l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
+                <div className="p-8 lg:p-12 relative z-10">
+                  <span className="text-[#E8156D] text-xs font-bold uppercase tracking-[0.3em] mb-4 block">
+                    {demo.category}
+                  </span>
+                  <h3 className="text-3xl font-display font-bold mb-4">{demo.title}</h3>
+                  <p className="text-white/40 text-lg leading-relaxed mb-8">
+                    {demo.description}
+                  </p>
+                  <Link 
+                    href={demo.demo_link || "#"} 
+                    target="_blank"
+                    className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest group-hover:text-[#E8156D] transition-colors"
+                  >
+                    View Prototype
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M5 12h14m-7-7l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Background Decorative Elements */}

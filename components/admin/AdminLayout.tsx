@@ -12,7 +12,8 @@ import {
   ChevronLeft, 
   Menu,
   Bell,
-  Search
+  Search,
+  Globe
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { gsap } from "gsap"
@@ -42,6 +43,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const menuItems = [
     { name: "Dashboard", icon: LayoutDashboard, href: "/admin" },
     { name: "Services", icon: Briefcase, href: "/admin/services" },
+    { name: "Demo Projects", icon: Globe, href: "/admin/demos" },
     { name: "Team Board", icon: Users, href: "/admin/board" },
     { name: "Site Settings", icon: Settings, href: "/admin/settings" },
   ]
