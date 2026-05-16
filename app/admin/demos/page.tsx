@@ -56,6 +56,12 @@ export default function DemosPage() {
     const file = e.target.files?.[0]
     if (!file) return
 
+    // Limit file size to 5MB
+    if (file.size > 5 * 1024 * 1024) {
+      alert("File size must be less than 5MB")
+      return
+    }
+
     setUploading(true)
     const fileExt = file.name.split('.').pop()
     const fileName = `${Math.random()}.${fileExt}`
@@ -66,7 +72,8 @@ export default function DemosPage() {
       .upload(filePath, file)
 
     if (uploadError) {
-      alert("Error uploading image")
+      console.error("Upload error:", uploadError)
+      alert("Error uploading image: " + uploadError.message)
       setUploading(false)
       return
     }
