@@ -131,7 +131,6 @@ export default function DemosPage() {
   }
 
   return (
-  return (
     <AdminLayout>
       <div className="space-y-12 max-w-7xl mx-auto pt-4">
         {/* Header with quick stats or intro */}

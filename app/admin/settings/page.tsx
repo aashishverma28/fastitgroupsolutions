@@ -72,7 +72,6 @@ export default function SettingsPage() {
   }
 
   return (
-  return (
     <AdminLayout>
       <div className="space-y-12 max-w-4xl mx-auto pt-4 pb-32">
         {/* Header */}

@@ -91,7 +91,6 @@ export default function ServicesPage() {
   }
 
   return (
-  return (
     <AdminLayout>
       <div className="space-y-12 max-w-7xl mx-auto pt-4">
         {/* Header */}
