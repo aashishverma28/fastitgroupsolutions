@@ -111,7 +111,7 @@ export function CompanyStory() {
               </div>
               <div className="flex-1">
                 <div className="bg-[#FFD93D] text-black font-display font-bold text-[20px] px-6 py-2.5 rounded-full inline-block mb-3">it</div>
-                <p className="text-[13px] text-black/50">Technology at the core.</p>
+                <p className="text-[13px] text-white/50">Technology at the core.</p>
               </div>
               <div className="flex-1">
                 <div className="border border-white/30 text-white font-display font-bold text-[20px] px-6 py-2.5 rounded-full inline-block mb-3">Group of Solutions</div>
