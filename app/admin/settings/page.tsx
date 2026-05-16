@@ -214,6 +214,3 @@ export default function SettingsPage() {
     </AdminLayout>
   )
 }
-    </AdminLayout>
-  )
-}

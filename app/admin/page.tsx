@@ -155,6 +155,3 @@ export default function AdminDashboard() {
     </AdminLayout>
   )
 }
-    </AdminLayout>
-  )
-}
