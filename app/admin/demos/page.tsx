@@ -131,82 +131,112 @@ export default function DemosPage() {
   }
 
   return (
+  return (
     <AdminLayout>
-      <div className="space-y-8 max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl font-display font-bold text-white">Demo Projects</h1>
-            <p className="text-gray-500 font-body">Manage the interactive prototypes shown on the Demo page.</p>
+      <div className="space-y-12 max-w-7xl mx-auto pt-4">
+        {/* Header with quick stats or intro */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-12">
+          <div className="max-w-xl">
+            <p className="font-hand text-[#E8156D] text-3xl lowercase mb-2">curating excellence</p>
+            <h1 className="text-6xl font-display font-black tracking-tighter text-white uppercase leading-[0.8]">
+              Prototype <br />
+              <span className="text-white/20 italic">Archives</span>
+            </h1>
+            <p className="text-gray-500 font-body text-lg mt-6 leading-relaxed">
+              Managing the visual prototypes that showcase our technical boundary-pushing. Each entry here is a window into our creative process.
+            </p>
           </div>
           <button 
             onClick={() => {
               setCurrentDemo({ title: "", description: "", category: "Product Design", demo_link: "#", image_url: "" })
               setIsModalOpen(true)
             }}
-            className="bg-[#E8156D] hover:bg-[#C1125A] text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 w-fit"
+            className="group relative bg-white text-black px-10 py-5 rounded-[30px] font-display font-black uppercase tracking-widest text-xs flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_-10px_rgba(255,255,255,0.2)]"
           >
-            <Plus className="w-5 h-5" /> Add Project
+            <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" /> New Project
           </button>
         </div>
 
         {/* Content */}
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-4 text-gray-500">
-            <Loader2 className="w-12 h-12 animate-spin text-[#E8156D]" />
-            <p className="font-display font-medium">Loading your demos...</p>
+          <div className="flex flex-col items-center justify-center py-40 gap-6 text-gray-500">
+            <div className="relative">
+              <div className="w-20 h-20 border-2 border-white/5 rounded-full animate-ping" />
+              <Loader2 className="w-10 h-10 animate-spin text-[#E8156D] absolute inset-0 m-auto" />
+            </div>
+            <p className="font-display font-bold uppercase tracking-[0.3em] text-xs">Opening Archives...</p>
           </div>
         ) : demos.length === 0 ? (
-          <div className="bg-white/5 border border-dashed border-white/10 rounded-[40px] py-24 text-center">
-            <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <Globe className="w-8 h-8 text-gray-600" />
+          <div className="bg-white/[0.02] border border-dashed border-white/10 rounded-[50px] py-40 text-center">
+            <div className="w-24 h-24 bg-white/5 rounded-[32px] flex items-center justify-center mx-auto mb-8 rotate-12 group-hover:rotate-0 transition-transform">
+              <Globe className="w-10 h-10 text-gray-700" />
             </div>
-            <h3 className="text-2xl font-display font-bold text-white mb-2">No demo projects found</h3>
-            <p className="text-gray-500 font-body mb-8">Start by adding your first prototype showcase.</p>
+            <h3 className="text-3xl font-display font-black text-white mb-4 uppercase tracking-tighter">The archives are empty</h3>
+            <p className="text-gray-500 font-body text-lg mb-10 max-w-sm mx-auto">No prototypes have been cataloged yet. Start building your portfolio.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {demos.map((demo) => (
-              <div key={demo.id} className="bg-white/5 border border-white/5 rounded-[32px] overflow-hidden hover:border-white/10 transition-all group relative">
-                {/* Image Preview */}
-                <div className="relative h-48 bg-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {demos.map((demo, index) => (
+              <div key={demo.id} className="group relative bg-white/[0.03] border border-white/5 rounded-[40px] overflow-hidden hover:border-white/20 transition-all duration-500 flex flex-col lg:flex-row h-full lg:h-72">
+                {/* Image Section */}
+                <div className="relative w-full lg:w-80 h-64 lg:h-full bg-white/5 flex-shrink-0 overflow-hidden">
                   {demo.image_url ? (
-                    <Image src={demo.image_url} alt={demo.title} fill className="object-cover" />
+                    <Image 
+                      src={demo.image_url} 
+                      alt={demo.title} 
+                      fill 
+                      className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                    />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-600">
-                      <ImageIcon className="w-10 h-10" />
+                    <div className="w-full h-full flex items-center justify-center text-white/10">
+                      <ImageIcon className="w-12 h-12" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent lg:from-black/40" />
+                  
+                  {/* Quick Actions Overlay */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button 
                       onClick={() => {
                         setCurrentDemo(demo)
                         setIsModalOpen(true)
                       }}
-                      className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform"
+                      className="w-10 h-10 bg-white text-black rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl"
                     >
-                      <Edit2 className="w-5 h-5" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
                     <button 
                       onClick={() => handleDelete(demo.id)}
-                      className="p-3 bg-red-500 text-white rounded-full hover:scale-110 transition-transform"
+                      className="w-10 h-10 bg-red-500 text-white rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl"
                     >
-                      <Trash2 className="w-5 h-5" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
 
-                <div className="p-6 space-y-4">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E8156D]">{demo.category}</span>
-                    <h3 className="text-lg font-display font-bold text-white line-clamp-1">{demo.title}</h3>
+                {/* Info Section */}
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#E8156D] bg-[#E8156D]/10 px-3 py-1 rounded-full">{demo.category}</span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">#{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <h3 className="text-2xl font-display font-black text-white leading-tight uppercase tracking-tighter group-hover:text-[#E8156D] transition-colors line-clamp-1">{demo.title}</h3>
                   </div>
-                  <p className="text-gray-500 text-sm font-body line-clamp-2">{demo.description}</p>
                   
-                  <div className="pt-4 flex items-center justify-between border-t border-white/5 text-[10px] font-bold text-gray-600 uppercase tracking-widest">
-                    <span>Order: {demo.order_index}</span>
-                    <a href={demo.demo_link} target="_blank" className="flex items-center gap-1 hover:text-white">
-                      Link <ExternalLink className="w-3 h-3" />
+                  <p className="text-gray-500 text-sm font-body leading-relaxed line-clamp-2 mb-6">{demo.description}</p>
+                  
+                  <div className="mt-auto flex items-center justify-between border-t border-white/5 pt-6">
+                    <div className="flex flex-col">
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600 mb-1">Index Order</span>
+                      <span className="text-xs font-black text-white">{demo.order_index}</span>
+                    </div>
+                    <a 
+                      href={demo.demo_link} 
+                      target="_blank" 
+                      className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors group/link"
+                    >
+                      Live Preview <ExternalLink className="w-3 h-3 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                     </a>
                   </div>
                 </div>
@@ -218,114 +248,127 @@ export default function DemosPage() {
 
       {/* Add/Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-          <div className="bg-[#0F0F0F] border border-white/10 w-full max-w-2xl rounded-[40px] relative z-10 overflow-hidden shadow-2xl">
-            <div className="p-8 border-b border-white/5 flex items-center justify-between">
-              <h2 className="text-2xl font-display font-bold text-white">
-                {currentDemo?.id ? "Edit Project" : "Add Demo Project"}
-              </h2>
-              <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                <X className="w-6 h-6 text-gray-500" />
-              </button>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-12">
+          <div className="absolute inset-0 bg-[#080808]/90 backdrop-blur-xl" onClick={() => setIsModalOpen(false)} />
+          <div className="bg-[#111] border border-white/10 w-full max-w-4xl rounded-[50px] relative z-10 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] flex flex-col md:flex-row max-h-[90vh]">
+            {/* Left: Image Side */}
+            <div className="w-full md:w-1/2 bg-white/[0.02] border-r border-white/5 p-8 flex flex-col">
+               <div className="mb-8">
+                 <h2 className="text-3xl font-display font-black text-white uppercase tracking-tighter">
+                   {currentDemo?.id ? "Refine Project" : "New Archive"}
+                 </h2>
+                 <p className="text-gray-500 font-body text-sm mt-2">Upload a visual representation of your work.</p>
+               </div>
+
+               <div 
+                onClick={() => fileInputRef.current?.click()}
+                className="flex-1 relative bg-white/[0.03] border-2 border-dashed border-white/10 rounded-[40px] overflow-hidden cursor-pointer hover:border-[#E8156D]/50 transition-all flex flex-col items-center justify-center gap-6 group"
+              >
+                {uploading ? (
+                  <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="w-10 h-10 animate-spin text-[#E8156D]" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Uploading...</p>
+                  </div>
+                ) : currentDemo?.image_url ? (
+                  <>
+                    <Image src={currentDemo.image_url} alt="Preview" fill className="object-cover transition-transform group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center">
+                        <Upload className="w-6 h-6" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-20 h-20 rounded-[30px] bg-white/5 flex items-center justify-center group-hover:bg-[#E8156D]/10 transition-colors">
+                      <Upload className="w-8 h-8 text-white/20 group-hover:text-[#E8156D]" />
+                    </div>
+                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest text-center px-8 leading-relaxed">Drop your mockup here or click to browse</p>
+                  </>
+                )}
+              </div>
+              <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
             </div>
 
-            <form onSubmit={handleSave} className="p-8 max-h-[70vh] overflow-y-auto custom-scrollbar space-y-6">
-              {/* Image Upload Area */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Project Image</label>
-                <div 
-                  onClick={() => fileInputRef.current?.click()}
-                  className="relative h-64 bg-white/5 border-2 border-dashed border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:border-[#E8156D]/50 transition-all flex flex-col items-center justify-center gap-4"
-                >
-                  {uploading ? (
-                    <Loader2 className="w-10 h-10 animate-spin text-[#E8156D]" />
-                  ) : currentDemo?.image_url ? (
-                    <>
-                      <Image src={currentDemo.image_url} alt="Preview" fill className="object-cover" />
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                        <Upload className="w-8 h-8 text-white" />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Upload className="w-10 h-10 text-gray-700" />
-                      <p className="text-gray-500 text-sm font-body">Click to upload project mockup</p>
-                    </>
-                  )}
+            {/* Right: Form Side */}
+            <form onSubmit={handleSave} className="flex-1 p-8 md:p-12 overflow-y-auto custom-scrollbar flex flex-col">
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Project Identity</label>
+                    <input 
+                      type="text" 
+                      value={currentDemo?.title || ""}
+                      onChange={(e) => setCurrentDemo({ ...currentDemo, title: e.target.value })}
+                      required
+                      placeholder="e.g. Spectral Interface"
+                      className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white font-display font-bold text-lg focus:outline-none focus:border-[#E8156D] focus:bg-white/[0.06] transition-all placeholder:text-white/10"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Classification</label>
+                      <input 
+                        type="text" 
+                        value={currentDemo?.category || ""}
+                        onChange={(e) => setCurrentDemo({ ...currentDemo, category: e.target.value })}
+                        required
+                        placeholder="e.g. R&D"
+                        className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-4 text-white text-sm focus:outline-none focus:border-[#E8156D] transition-all"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Order Index</label>
+                      <input 
+                        type="number" 
+                        value={currentDemo?.order_index || 0}
+                        onChange={(e) => setCurrentDemo({ ...currentDemo, order_index: parseInt(e.target.value) })}
+                        className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-4 text-white text-sm focus:outline-none focus:border-[#E8156D] transition-all"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <input 
-                  type="file" 
-                  ref={fileInputRef} 
-                  onChange={handleImageUpload} 
-                  className="hidden" 
-                  accept="image/*"
-                />
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Project Title</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Access Point (URL)</label>
                   <input 
                     type="text" 
-                    value={currentDemo?.title || ""}
-                    onChange={(e) => setCurrentDemo({ ...currentDemo, title: e.target.value })}
-                    required
-                    placeholder="e.g. Music Dashboard"
-                    className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 text-white focus:outline-none focus:border-[#E8156D] transition-all"
+                    value={currentDemo?.demo_link || ""}
+                    onChange={(e) => setCurrentDemo({ ...currentDemo, demo_link: e.target.value })}
+                    placeholder="https://prototype.fastit.com/..."
+                    className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-4 text-white text-sm focus:outline-none focus:border-[#E8156D] transition-all placeholder:text-white/10"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Category</label>
-                  <input 
-                    type="text" 
-                    value={currentDemo?.category || ""}
-                    onChange={(e) => setCurrentDemo({ ...currentDemo, category: e.target.value })}
+
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">The Narrative</label>
+                  <textarea 
+                    value={currentDemo?.description || ""}
+                    onChange={(e) => setCurrentDemo({ ...currentDemo, description: e.target.value })}
                     required
-                    placeholder="e.g. SaaS Design"
-                    className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 text-white focus:outline-none focus:border-[#E8156D] transition-all"
+                    placeholder="Describe the soul of this project..."
+                    rows={4}
+                    className="w-full bg-white/[0.03] border border-white/5 rounded-3xl p-5 text-white text-sm focus:outline-none focus:border-[#E8156D] transition-all resize-none placeholder:text-white/10 leading-relaxed"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Demo Link (URL)</label>
-                <input 
-                  type="text" 
-                  value={currentDemo?.demo_link || ""}
-                  onChange={(e) => setCurrentDemo({ ...currentDemo, demo_link: e.target.value })}
-                  placeholder="https://..."
-                  className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 text-white focus:outline-none focus:border-[#E8156D] transition-all"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Description</label>
-                <textarea 
-                  value={currentDemo?.description || ""}
-                  onChange={(e) => setCurrentDemo({ ...currentDemo, description: e.target.value })}
-                  required
-                  placeholder="Tell us about this project..."
-                  rows={4}
-                  className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 text-white focus:outline-none focus:border-[#E8156D] transition-all resize-none"
-                />
-              </div>
-
-              <div className="pt-4 flex items-center justify-end gap-4">
+              <div className="mt-12 flex items-center justify-between">
                 <button 
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-6 py-3 rounded-2xl font-bold text-gray-500 hover:text-white transition-colors"
+                  className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-600 hover:text-white transition-colors"
                 >
-                  Cancel
+                  Discard
                 </button>
                 <button 
                   type="submit"
                   disabled={saving || uploading}
-                  className="bg-[#E8156D] hover:bg-[#C1125A] disabled:opacity-50 text-white px-8 py-3 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-[0_10px_40px_-10px_rgba(232,21,109,0.3)]"
+                  className="bg-[#E8156D] text-white px-10 py-5 rounded-3xl font-display font-black uppercase tracking-widest text-xs flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(232,21,109,0.4)]"
                 >
-                  {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Check className="w-5 h-5" />}
-                  {currentDemo?.id ? "Update Project" : "Create Project"}
+                  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                  {currentDemo?.id ? "Update Entry" : "Commit to Archives"}
                 </button>
               </div>
             </form>
