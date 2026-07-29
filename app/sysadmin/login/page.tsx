@@ -22,7 +22,7 @@ export default function AdminLogin() {
     // Check if already logged in
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (session) router.push("/admin")
+      if (session) router.push("/sysadmin")
     }
     checkUser()
 
@@ -44,8 +44,8 @@ export default function AdminLogin() {
 
     // Map username to internal email
     let loginEmail = username
-    if (username.toLowerCase() === "mainadmin01") {
-      loginEmail = "mainadmin01@fastit.com"
+    if (username.toLowerCase() === "mainadmin") {
+      loginEmail = "mainadmin@fastit.com"
     }
 
     try {
@@ -56,7 +56,7 @@ export default function AdminLogin() {
 
       if (error) throw error
       
-      router.push("/admin")
+      router.push("/sysadmin")
     } catch (err: any) {
       setError(err.message || "Failed to sign in")
       // Shake animation on error
@@ -107,7 +107,7 @@ export default function AdminLogin() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
-                  placeholder="Mainadmin01"
+                  placeholder="Mainadmin"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white font-body focus:outline-none focus:border-[#E8156D] focus:ring-1 focus:ring-[#E8156D]/50 transition-all placeholder:opacity-30"
                 />
               </div>

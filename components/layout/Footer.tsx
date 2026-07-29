@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 export function Footer() {
   const pathname = usePathname()
   
-  if (pathname.startsWith("/admin")) return null
+  if (pathname.startsWith("/sysadmin")) return null
 
   return (
     <footer className="w-full bg-[#0A0A0A] text-white py-20 px-6 border-t border-white/10">

@@ -27,7 +27,7 @@ export function Navbar() {
     setIsMenuOpen(false)
   }, [pathname])
   
-  if (pathname.startsWith("/admin")) return null
+  if (pathname.startsWith("/sysadmin")) return null
 
   return (
     <>

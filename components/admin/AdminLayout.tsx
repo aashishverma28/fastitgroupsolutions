@@ -32,7 +32,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) {
-        router.push("/admin/login")
+        router.push("/sysadmin/login")
       } else {
         setUserName(session.user.email?.split('@')[0] || "Admin")
       }
@@ -41,16 +41,16 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }, [router])
 
   const menuItems = [
-    { name: "Dashboard", icon: LayoutDashboard, href: "/admin" },
-    { name: "Services", icon: Briefcase, href: "/admin/services" },
-    { name: "Demo Projects", icon: Globe, href: "/admin/demos" },
-    { name: "Team Board", icon: Users, href: "/admin/board" },
-    { name: "Site Settings", icon: Settings, href: "/admin/settings" },
+    { name: "Dashboard", icon: LayoutDashboard, href: "/sysadmin" },
+    { name: "Services", icon: Briefcase, href: "/sysadmin/services" },
+    { name: "Demo Projects", icon: Globe, href: "/sysadmin/demos" },
+    { name: "Team Board", icon: Users, href: "/sysadmin/board" },
+    { name: "Site Settings", icon: Settings, href: "/sysadmin/settings" },
   ]
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
-    router.push("/admin/login")
+    router.push("/sysadmin/login")
   }
 
   return (
@@ -69,7 +69,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         <div className="flex-1 bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[40px] flex flex-col overflow-hidden relative shadow-2xl">
           {/* Logo Area */}
           <div className="p-8 mb-4">
-            <Link href="/admin" className="flex items-center gap-3 group">
+            <Link href="/sysadmin" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#E8156D] to-[#FFD93D] flex-shrink-0 group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-[#E8156D]/20" />
               {isSidebarOpen && (
                 <div className="flex flex-col">
