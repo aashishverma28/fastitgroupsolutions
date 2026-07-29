@@ -78,9 +78,9 @@ export function FounderSection() {
   }, [])
 
   return (
-    <section id="founder" ref={sectionRef} className="relative bg-[#FAF9F7] py-[160px] px-6 md:px-20 overflow-hidden">
+    <section id="founder" ref={sectionRef} className="relative bg-[#050505] py-[160px] px-6 md:px-20 overflow-hidden">
       {/* Grain Overlay */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <svg width="100%" height="100%">
           <filter id="noise">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -97,16 +97,16 @@ export function FounderSection() {
           </span>
 
           <blockquote className="relative border-l-4 border-[#E8156D] pl-7 mb-12 max-w-[580px]">
-            <p className="font-cormorant italic text-[32px] md:text-[36px] text-[#1A1A1A] leading-[1.5]">
+            <p className="font-cormorant italic text-[32px] md:text-[36px] text-white leading-[1.5]">
               "I am a BTech student in Golaghat, Assam. I looked around and asked one question — why isn't great software being built here? I didn't find a good answer. So I stopped looking and started building."
             </p>
             <cite className="block not-italic mt-6">
-              <span className="block font-satoshi font-semibold text-[16px] text-[#1A1A1A]">— Aashish Verma</span>
+              <span className="block font-satoshi font-semibold text-[16px] text-white">— Aashish Verma</span>
               <span className="block font-satoshi font-normal text-[14px] text-[#E8156D]">Founder, Fastit Group of Solutions</span>
             </cite>
           </blockquote>
 
-          <div className="space-y-6 font-satoshi text-[18px] text-[#555555] leading-[1.85] max-w-[580px]">
+          <div className="space-y-6 font-satoshi text-[18px] text-white/60 leading-[1.85] max-w-[580px]">
             <p>
               Aashish Verma is not the typical founder story. There was no big city startup. No venture capital pitch deck. No co-working space in Bangalore with a ping-pong table.
             </p>
@@ -123,7 +123,7 @@ export function FounderSection() {
               He started Fastit Group of Solutions from Dergaon, Golaghat — while still pursuing his degree — because he understood something most people take years to figure out: The best time to solve a real problem is when you can see it clearly. And he could see it clearly.
             </p>
 
-            <div className="highlight-box bg-[#FFF0F5] border-l-4 border-[#E8156D] rounded-r-lg p-6 my-8 text-[17px] font-medium text-[#1A1A1A]">
+            <div className="highlight-box bg-white/[0.02] border-l-4 border-[#E8156D] rounded-r-lg p-6 my-8 text-[17px] font-medium text-white/90">
               "Northeast India had talent. It had businesses that needed digital solutions. What it didn't have was a company that combined both — with the quality and seriousness that clients actually deserved."
             </div>
 
@@ -141,7 +141,7 @@ export function FounderSection() {
             </p>
 
             <div className="pt-12">
-              <p className="font-display font-semibold text-[26px] text-[#1A1A1A] leading-[1.4]">
+              <p className="font-display font-semibold text-[26px] text-white leading-[1.4] uppercase tracking-tight">
                 "Northeast India has always had brilliant people. We just needed someone to build the right stage for them. That's what Fastit is — a stage. And we're just getting started."
               </p>
               <p className="font-satoshi font-medium text-[15px] text-[#E8156D] mt-4">— Aashish Verma, Founder</p>
@@ -150,69 +150,48 @@ export function FounderSection() {
         </div>
 
         {/* Right Column — Founder Visual Card */}
-        <div className="relative">
-          <div ref={rightCardRef} className="lg:sticky lg:top-[100px] flex items-center justify-center min-h-[500px]">
-            {/* Collage Container */}
-            <div className="relative w-[320px] h-[400px]">
-              {/* Element A — Main founder photo card */}
-              <div className="main-card absolute inset-0 bg-[#E8156D] rounded-[16px] overflow-hidden shadow-[0_20px_60px_rgba(232,21,109,0.25)] outline outline-3 outline-[#E8156D] outline-offset-8 z-20">
+        <div className="relative flex items-center justify-center">
+          <div ref={rightCardRef} className="lg:sticky lg:top-[150px] w-full max-w-[380px]">
+            <div className="main-card relative aspect-[3/4] bg-white/[0.02] border border-white/5 backdrop-blur-xl p-4 rounded-[32px] shadow-[0_30px_100px_rgba(0,0,0,0.8)] group overflow-hidden">
+              {/* Photo Container */}
+              <div className="relative w-full h-full rounded-[24px] overflow-hidden">
                 <Image 
                   src="/founder.jpg" 
                   alt="Aashish Verma" 
                   fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                 />
-                <div className="card-shine absolute inset-0 pointer-events-none rounded-[16px] z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
               </div>
-
-              {/* Element B — Education sticky note */}
-              <div 
-                ref={(el) => { if (el) stickyNotesRef.current[0] = el }}
-                className="absolute -top-5 -right-5 rotate-[8deg] bg-[#FFD93D] p-5 rounded-[4px] w-[180px] shadow-[0_4px_12px_rgba(0,0,0,0.15)] z-30"
-              >
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#E8156D] rounded-full shadow-inner" />
-                <p className="font-caveat text-[13px] leading-[1.6] text-[#1A1A1A] pt-2">
-                  "BTech CSE 🎓"<br/>
-                  "Birangana Sati Sadhani"<br/>
-                  "Rajyik Vishwavidyalaya"<br/>
-                  "Golaghat, Assam"<br/>
-                  "Class of 2029"
-                </p>
-              </div>
-
-              {/* Element C — Founder stat card */}
-              <div 
-                ref={(el) => { if (el) stickyNotesRef.current[1] = el }}
-                className="absolute -bottom-6 -left-6 -rotate-[4deg] bg-white p-5 rounded-[12px] w-[180px] border-l-4 border-[#E8156D] shadow-[0_8px_24px_rgba(0,0,0,0.1)] z-30"
-              >
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#E8156D] rounded-full shadow-inner" />
-                <span className="block font-satoshi font-semibold text-[11px] text-[#E8156D] uppercase tracking-wider mb-1">FOUNDER & CEO</span>
-                <span className="block font-display font-semibold text-[18px] text-[#1A1A1A]">Aashish Verma</span>
-                <span className="block font-satoshi font-normal text-[12px] text-[#AAAAAA]">Dergaon, Assam</span>
-              </div>
-
-              {/* Element D — Floating badge */}
-              <div className="absolute bottom-[60px] -right-[30px] rotate-[3deg] bg-[#0A0A0A] px-4 py-2 rounded-full z-40">
-                <span className="font-satoshi font-medium text-[13px] text-white">📍 Golaghat, Assam</span>
-              </div>
-
-              {/* 3D FLOATING OBJECT */}
-              <div className="absolute top-1/2 -right-[100px] -translate-y-1/2 w-[120px] h-[120px] z-10 pointer-events-none">
-                <Canvas camera={{ position: [0, 0, 5] }}>
-                  <ambientLight intensity={0.5} />
-                  <pointLight position={[10, 10, 10]} />
-                  <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                    <mesh rotation={[1, 1, 1]}>
-                      <boxGeometry args={[1.2, 1.2, 1.2]} />
-                      <MeshDistortMaterial 
-                        color="#E8156D" 
-                        speed={2} 
-                        distort={0.4}
-                      />
-                    </mesh>
-                  </Float>
-                </Canvas>
-              </div>
+              
+              {/* Ambient glow inside card */}
+              <div className="absolute -left-16 -top-16 w-32 h-32 bg-[#E8156D]/10 blur-[30px] rounded-full pointer-events-none" />
+            </div>
+            
+            {/* Floating Info Tag */}
+            <div className="mt-8 flex flex-col gap-2 px-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#E8156D]">FOUNDER & CEO</span>
+              <h4 className="font-display font-black text-2xl text-white uppercase tracking-tight">Aashish Verma</h4>
+              <p className="text-white/40 font-satoshi text-xs tracking-wider uppercase">BTech CSE · Class of 2029</p>
+              <span className="text-[10px] font-bold text-[#FFD93D] tracking-widest uppercase mt-4">📍 Golaghat, Assam</span>
+            </div>
+            
+            {/* 3D FLOATING OBJECT */}
+            <div className="absolute top-1/2 -right-[120px] -translate-y-1/2 w-[140px] h-[140px] z-10 pointer-events-none">
+              <Canvas camera={{ position: [0, 0, 5] }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} />
+                <Float speed={3} rotationIntensity={1.5} floatIntensity={1.5}>
+                  <mesh rotation={[1, 1, 1]}>
+                    <boxGeometry args={[1.2, 1.2, 1.2]} />
+                    <MeshDistortMaterial 
+                      color="#E8156D" 
+                      speed={2.2} 
+                      distort={0.4}
+                    />
+                  </mesh>
+                </Float>
+              </Canvas>
             </div>
           </div>
         </div>

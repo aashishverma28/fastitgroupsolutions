@@ -49,14 +49,17 @@ export default function DynamicServices() {
         return (
           <div 
             key={service.id} 
-            className="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-100" 
+            className="group relative bg-white/[0.02] border border-white/5 backdrop-blur-xl p-10 rounded-[30px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden" 
             data-cursor="view"
           >
-            <div className="w-16 h-16 rounded-full bg-[#E8156D]/10 flex items-center justify-center mb-8 text-[#E8156D] group-hover:scale-110 transition-transform">
-              <Icon className="w-6 h-6" />
+            {/* Ambient card glow */}
+            <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-[#E8156D]/5 blur-[30px] rounded-full group-hover:bg-[#E8156D]/10 transition-all duration-500 pointer-events-none" />
+            
+            <div className="w-14 h-14 rounded-2xl bg-[#E8156D]/10 flex items-center justify-center mb-8 text-[#E8156D] group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+              <Icon className="w-5 h-5" />
             </div>
-            <h3 className="text-2xl font-display font-bold mb-4">{service.title}</h3>
-            <p className="text-gray-600 font-body leading-relaxed">{service.description}</p>
+            <h3 className="text-2xl font-display font-bold mb-4 text-white uppercase tracking-tight">{service.title}</h3>
+            <p className="text-white/55 font-body leading-relaxed text-base">{service.description}</p>
           </div>
         )
       })}

@@ -150,7 +150,7 @@ export function AboutHero() {
   }, [])
 
   return (
-    <section ref={containerRef} id="about-hero" className="relative w-full h-[120vh] bg-[#0A0A0A] overflow-hidden">
+    <section ref={containerRef} id="about-hero" className="relative w-full h-[120vh] bg-[#050505] overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <Canvas shadows dpr={[1, 2]}>
@@ -175,7 +175,7 @@ export function AboutHero() {
             className="text-[12vw] md:text-[10vw] font-display font-extrabold leading-[0.8] tracking-tighter text-white uppercase mix-blend-difference"
           >
             Real <span className="text-[#E8156D]">Humans.</span><br/>
-            Real <span className="italic font-hand text-[15vw] md:text-[12vw] text-[#FFD93D] lowercase">Tech.</span>
+            Real <span className="italic font-light text-[#FFD93D]">Tech.</span>
           </h1>
 
           <p 

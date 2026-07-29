@@ -67,13 +67,13 @@ export function AboutTimeline() {
   }, [])
 
   return (
-    <section className="bg-[#FAF9F7] py-[140px] px-6 overflow-hidden">
+    <section className="bg-[#050505] py-[140px] px-6 overflow-hidden border-t border-white/5">
       <div className="container mx-auto">
         <div className="text-center mb-24">
           <span className="block font-satoshi font-semibold text-[12px] text-[#E8156D] uppercase tracking-[0.15em] mb-4">
             OUR JOURNEY
           </span>
-          <h2 className="font-display font-extrabold text-[48px] md:text-[72px] text-[#0A0A0A]">
+          <h2 className="font-display font-extrabold text-[48px] md:text-[72px] text-white uppercase tracking-tighter">
             The Story So Far.
           </h2>
         </div>
@@ -87,12 +87,12 @@ export function AboutTimeline() {
               {/* Content */}
               <div className={`timeline-content w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
                 <span className="font-display font-bold text-[32px] text-[#E8156D] block mb-2">{event.year}</span>
-                <h3 className="font-display font-bold text-[22px] text-[#0A0A0A] mb-3">{event.title}</h3>
-                <p className="font-satoshi text-[16px] text-[#666666] leading-relaxed">{event.description}</p>
+                <h3 className="font-display font-bold text-[22px] text-white uppercase tracking-tight mb-3">{event.title}</h3>
+                <p className="font-satoshi text-[16px] text-white/60 leading-relaxed">{event.description}</p>
               </div>
 
               {/* Dot */}
-              <div className="timeline-dot absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E8156D] rounded-full border-4 border-white shadow-[0_0_0_4px_rgba(232,21,109,0.15)] z-10" />
+              <div className="timeline-dot absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E8156D] rounded-full border-4 border-[#050505] shadow-[0_0_0_4px_rgba(232,21,109,0.15)] z-10" />
 
               {/* Empty Spacer */}
               <div className="w-1/2" />

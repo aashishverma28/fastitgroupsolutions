@@ -31,20 +31,20 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white">
-        <div className="container mx-auto px-6 py-6 flex justify-between items-center">
-          <Link href="/" className="font-display font-bold text-2xl tracking-tighter relative z-[60]">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50">
+        <div className="bg-white/[0.03] border border-white/5 backdrop-blur-xl rounded-[30px] px-8 py-5 flex justify-between items-center shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+          <Link href="/" className="font-display font-bold text-2xl tracking-tighter text-white hover:text-[#E8156D] transition-colors relative z-[60]">
             FASTIT.
           </Link>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8 font-bold text-sm tracking-widest uppercase">
-            <Link href="/about" className="hover:text-[#E8156D] transition-colors">About</Link>
-            <Link href="/services" className="hover:text-[#E8156D] transition-colors">Services</Link>
-            <Link href="/demo" className="hover:text-[#E8156D] transition-colors">Demo</Link>
-            <Link href="/work" className="hover:text-[#E8156D] transition-colors">Work</Link>
-            <Link href="/blog" className="hover:text-[#E8156D] transition-colors">Blog</Link>
-            <Link href="/contact" className="px-5 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all">Let's Talk</Link>
+          <div className="hidden md:flex items-center gap-8 font-satoshi font-medium text-xs tracking-[0.2em] uppercase text-white/70">
+            <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <Link href="/demo" className="hover:text-white transition-colors">Demo</Link>
+            <Link href="/work" className="hover:text-white transition-colors">Work</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/contact" className="px-5 py-2.5 bg-white text-black rounded-full font-bold hover:bg-[#E8156D] hover:text-white transition-all duration-300">Let's Talk</Link>
           </div>
 
           {/* Mobile Toggle */}

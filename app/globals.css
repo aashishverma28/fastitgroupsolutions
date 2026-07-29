@@ -16,15 +16,8 @@
 
 @layer base {
   :root {
-    --background: #FAF9F7;
-    --foreground: #0A0A0A;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0A0A0A;
-      --foreground: #FAF9F7;
-    }
+    --background: #050505;
+    --foreground: #FAF9F7;
   }
 
   body {

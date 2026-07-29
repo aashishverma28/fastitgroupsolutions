@@ -33,41 +33,45 @@ export default function DynamicTeamBoard() {
   if (loading || members.length === 0) return null
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 w-full max-w-6xl px-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 w-full max-w-6xl px-6">
       {members.map((member, i) => (
         <div 
           key={member.id} 
-          className="bg-[#FAF9F7] p-8 shadow-xl relative transition-all hover:scale-105 hover:rotate-1"
-          style={{ rotate: `${(i % 2 === 0 ? 1 : -1) * (i + 1)}deg` }}
+          className="group relative bg-white/[0.02] border border-white/5 backdrop-blur-xl p-8 rounded-[30px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
         >
-           <div className="w-3 h-3 rounded-full bg-zinc-400 absolute -top-1.5 left-1/2 -translate-x-1/2 shadow-sm" />
+           {/* Card background ambient glow */}
+           <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-[#FFD93D]/5 blur-[30px] rounded-full group-hover:bg-[#FFD93D]/10 transition-all duration-500 pointer-events-none" />
            
-           <div className="flex items-start gap-4 mb-4">
-              <div className="w-14 h-14 rounded-full bg-zinc-200 overflow-hidden flex-shrink-0">
+           <div className="flex items-center gap-5 mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-white/5 overflow-hidden flex-shrink-0 relative border border-white/10 group-hover:border-[#FFD93D]/50 transition-colors duration-500">
                 {member.image_url ? (
-                  <img src={member.image_url} alt={member.name} className="w-full h-full object-cover" />
+                  <img 
+                    src={member.image_url} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110" 
+                  />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-zinc-400">
+                  <div className="w-full h-full flex items-center justify-center text-white/30">
                     <User className="w-6 h-6" />
                   </div>
                 )}
               </div>
               <div>
-                <h3 className="font-hand text-2xl font-bold text-black leading-none mb-1">{member.name}</h3>
-                <p className="font-hand text-lg text-zinc-500">{member.role}</p>
+                <h3 className="font-display font-bold text-xl text-white uppercase tracking-tight">{member.name}</h3>
+                <p className="font-satoshi font-semibold text-xs text-[#FFD93D] uppercase tracking-widest mt-1">{member.role}</p>
               </div>
            </div>
 
-           <p className="font-hand text-xl text-zinc-700 leading-tight mb-4">"{member.bio}"</p>
+           <p className="font-satoshi text-white/60 leading-relaxed text-sm italic mb-8">"{member.bio}"</p>
            
            {member.linkedin_url && (
              <a 
               href={member.linkedin_url} 
               target="_blank" 
-              className="inline-flex items-center gap-2 text-[#0077b5] hover:opacity-80 transition-opacity"
+              className="inline-flex items-center gap-2 text-white/40 hover:text-[#FFD93D] transition-colors duration-300 font-satoshi text-xs font-bold uppercase tracking-wider"
              >
-               <Link2 className="w-4 h-4" />
-               <span className="font-hand text-lg font-bold underline decoration-dotted">Connect</span>
+               <Link2 className="w-3.5 h-3.5" />
+               <span>Connect</span>
              </a>
            )}
         </div>

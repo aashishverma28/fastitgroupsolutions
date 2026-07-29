@@ -192,14 +192,14 @@ export const initParallax = () => {
 // PAGE BACKGROUND COLOR MORPH
 export const initColorMorph = () => {
   [
-    ["#hero", "#0A0A0A"],
-    ["#services", "#FAF9F7"],
-    ["#portfolio", "#0F0F0F"],
-    ["#about-snap", "#0F0F0F"],
-    ["#process", "#FAF9F7"],
-    ["#honest-board", "#F2E8D9"],
-    ["#testimonials", "#FAF9F7"],
-    ["#cta", "#E8156D"],
+    ["#hero", "#050505"],
+    ["#services", "#080808"],
+    ["#portfolio", "#050505"],
+    ["#about-snap", "#050505"],
+    ["#process", "#080808"],
+    ["#honest-board", "#070707"],
+    ["#testimonials", "#080808"],
+    ["#cta", "#050505"],
   ].forEach(([selector, color]) => {
     const el = document.querySelector(selector)
     if (!el) return

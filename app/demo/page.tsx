@@ -88,14 +88,14 @@ export default function DemoPage() {
   }, [loading])
 
   return (
-    <main className="relative w-full min-h-screen bg-[#080808] text-white overflow-hidden pt-32 pb-20">
+    <main className="relative w-full min-h-screen bg-[#050505] text-white overflow-hidden pt-44 pb-20">
       {/* Hero Section */}
       <section className="container mx-auto px-6 mb-32 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
           <div>
-            <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter mb-8">
+            <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-[0.9] tracking-tighter uppercase mb-8">
               Explore Our <br />
-              <span className="font-hand text-[#E8156D] italic">Prototypes.</span>
+              <span className="text-[#E8156D] italic font-light lowercase">Prototypes.</span>
             </h1>
             <p className="text-xl text-white/50 max-w-lg font-body leading-relaxed">
               A curated collection of internal experiments, client demos, and concept designs that push the boundaries of IT solutions.
@@ -125,7 +125,7 @@ export default function DemoPage() {
         ) : (
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {demos.map((demo) => (
-              <div key={demo.id} className="group relative rounded-[30px] overflow-hidden bg-[#111] border border-white/5 flex flex-col cursor-crosshair">
+              <div key={demo.id} className="group relative rounded-[30px] overflow-hidden bg-white/[0.02] border border-white/5 backdrop-blur-xl flex flex-col hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 cursor-crosshair">
                 <div className="card-shine absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative h-[300px] sm:h-[400px] overflow-hidden bg-white/5">
@@ -137,21 +137,21 @@ export default function DemoPage() {
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
                 </div>
 
                 <div className="p-8 lg:p-12 relative z-10">
                   <span className="text-[#E8156D] text-xs font-bold uppercase tracking-[0.3em] mb-4 block">
                     {demo.category}
                   </span>
-                  <h3 className="text-3xl font-display font-bold mb-4">{demo.title}</h3>
-                  <p className="text-white/40 text-lg leading-relaxed mb-8">
+                  <h3 className="text-3xl font-display font-bold text-white uppercase tracking-tight mb-4">{demo.title}</h3>
+                  <p className="text-white/60 text-lg leading-relaxed mb-8">
                     {demo.description}
                   </p>
                   <Link 
                     href={demo.demo_link || "#"} 
                     target="_blank"
-                    className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest group-hover:text-[#E8156D] transition-colors"
+                    className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-[#E8156D] transition-colors"
                   >
                     View Prototype
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

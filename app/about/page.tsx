@@ -22,7 +22,7 @@ import { Marquee } from "@/components/ui/Marquee"
 
 export default function AboutPage() {
   return (
-    <main className="relative w-full overflow-hidden bg-[#FAF9F7]">
+    <main className="relative w-full overflow-hidden bg-[#050505] text-white">
       {/* 01. HERO SECTION */}
       <AboutHero />
 
@@ -39,31 +39,34 @@ export default function AboutPage() {
           "Dergaon Roots",
           "Global Standards"
         ]}
-        bg="bg-[#FAF9F7]"
-        textColor="text-[#0A0A0A]/10"
+        bg="bg-[#050505]"
+        textColor="text-white/5"
         speed={40}
       />
 
       {/* 02. FOUNDER SECTION */}
       <FounderSection />
 
-      {/* DIVIDER: Transition from Founder (Light) to Company (Dark) */}
-      <BlobDivider fromColor="#FAF9F7" toColor="#0F0F0F" />
+      {/* DIVIDER: Transition from Founder (Dark) to Company (Dark) */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       {/* 03. COMPANY STORY */}
       <CompanyStory />
 
       {/* DIVIDER: Transition from Company (Dark) to Values (Darker) */}
-      <div className="h-[1px] w-full bg-white/5" />
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       {/* 04. VALUES SECTION */}
       <ValuesSection />
 
-      {/* DIVIDER: Transition from Values (Dark) to Offices (Light) */}
-      <BlobDivider fromColor="#0A0A0A" toColor="#FAF9F7" />
+      {/* DIVIDER: Transition from Values (Dark) to Offices (Dark) */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       {/* 05. OFFICES SECTION */}
       <OfficeSection />
+
+      {/* DIVIDER */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       {/* 06. TIMELINE SECTION */}
       <AboutTimeline />

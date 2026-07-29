@@ -85,19 +85,22 @@ export default function Work() {
   }, [])
 
   return (
-    <main className="relative w-full min-h-screen bg-[#0F0F0F] overflow-hidden pt-32 pb-20 text-white">
+    <main className="relative w-full min-h-screen bg-[#050505] overflow-hidden pt-44 pb-20 text-white">
+      {/* Ambient Blur */}
+      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/5 blur-[150px] rounded-full pointer-events-none" />
+
       <div className="container mx-auto px-6">
-        <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-bold leading-tight mb-20">
-          Selected <span className="font-hand text-[#E8156D] italic">Works.</span>
+        <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-none uppercase tracking-tighter mb-24">
+          Selected <span className="text-[#E8156D] italic font-light lowercase">Works.</span>
         </h1>
         
         <div ref={gridRef} className="max-w-5xl mx-auto">
           {projects.map((proj) => (
-            <div key={proj.id} className="group relative bg-[#1A1A1A] rounded-[40px] overflow-hidden border border-white/5 shadow-2xl">
+            <div key={proj.id} className="group relative bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-[40px] overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] hover:border-white/10 transition-all duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 
                 {/* 3D PREVIEW SECTION */}
-                <div className="relative h-[400px] lg:h-[600px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A]">
+                <div className="relative h-[400px] lg:h-[600px] bg-gradient-to-br from-[#101010] to-[#050505] border-b lg:border-b-0 lg:border-r border-white/5">
                   <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
                     <Suspense fallback={null}>
                       <ProjectPreview3D />
@@ -105,16 +108,16 @@ export default function Work() {
                   </Canvas>
                   
                   {/* Floating Badge */}
-                  <div className="absolute top-8 left-8 bg-[#E8156D] text-white px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest z-10 animate-pulse">
+                  <div className="absolute top-8 left-8 bg-[#E8156D] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest z-10 shadow-[0_5px_15px_rgba(232,21,109,0.4)] animate-pulse">
                     Live Platform
                   </div>
                 </div>
 
                 {/* PROJECT DETAILS */}
-                <div className="p-10 lg:p-20 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-white/5">
-                  <span className="text-sm font-bold uppercase tracking-[0.2em] text-[#E8156D] mb-6">{proj.category}</span>
-                  <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">{proj.title}</h2>
-                  <p className="text-lg md:text-xl text-white/50 font-body leading-relaxed mb-12">
+                <div className="p-10 lg:p-20 flex flex-col justify-center">
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#E8156D] mb-6">{proj.category}</span>
+                  <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tight mb-8 leading-none">{proj.title}</h2>
+                  <p className="text-lg text-white/60 font-body leading-relaxed mb-12">
                     {proj.description}
                   </p>
                   
@@ -122,11 +125,11 @@ export default function Work() {
                     <Link 
                       href={proj.link}
                       target="_blank"
-                      className="inline-flex items-center gap-3 bg-[#E8156D] text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-500"
+                      className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-[#E8156D] hover:text-white transition-all duration-500 shadow-xl"
                     >
                       Visit Website
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </Link>
                   </div>
