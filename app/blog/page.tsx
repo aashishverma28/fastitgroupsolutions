@@ -16,7 +16,7 @@ export default function Blog() {
     <main className="relative w-full min-h-screen bg-[#050505] overflow-hidden pt-44 pb-20 text-white">
       {/* Background Decorative Grid & Glow */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.4] pointer-events-none" />
-      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/5 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
 
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-none uppercase tracking-tighter mb-24">

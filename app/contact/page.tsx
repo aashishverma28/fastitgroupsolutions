@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <main className="relative w-full min-h-screen bg-[#050505] overflow-hidden pt-44 pb-20 text-white">
       {/* Glow Blur */}
-      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#FFD93D]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#FFD93D]/5 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
 
       <div className="container mx-auto px-6">
         <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-none uppercase tracking-tighter mb-24 max-w-4xl">

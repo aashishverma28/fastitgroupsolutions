@@ -50,7 +50,7 @@ export default function Home() {
       <section id="hero" className="relative w-full h-screen flex flex-col justify-center overflow-hidden bg-[#050505]">
         {/* 2D Background Grid & Ambient Glow */}
         <div className="absolute inset-0 bg-grid-pattern z-0" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#E8156D]/10 via-[#FFD93D]/5 to-transparent blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#E8156D]/10 via-[#FFD93D]/5 to-transparent blur-[120px] rounded-full pointer-events-none z-0 bg-glow-gpu" />
         
         {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full pointer-events-none">

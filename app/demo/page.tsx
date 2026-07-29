@@ -67,7 +67,7 @@ export default function DemoPage() {
           </div>
           <div className="relative h-[300px] lg:h-[450px] flex items-center justify-center">
             {/* Glowing background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none bg-glow-gpu" />
             
             {/* Grid graphic */}
             <div className="w-full max-w-sm aspect-[4/3] bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative z-10 flex flex-col p-8 items-center justify-center shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
@@ -139,8 +139,8 @@ export default function DemoPage() {
       </section>
 
       {/* Background Decorative Elements */}
-      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[30%] h-[30%] bg-[#A8D8EA]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/10 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[30%] h-[30%] bg-[#A8D8EA]/5 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
     </main>
   )
 }

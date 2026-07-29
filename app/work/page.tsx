@@ -31,7 +31,7 @@ export default function Work() {
   return (
     <main className="relative w-full min-h-screen bg-[#050505] overflow-hidden pt-44 pb-20 text-white">
       {/* Ambient Blur */}
-      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#E8156D]/5 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
 
       <div className="container mx-auto px-6">
         <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-none uppercase tracking-tighter mb-24">
@@ -46,7 +46,7 @@ export default function Work() {
                 {/* 2D BROWSER MOCKUP PREVIEW */}
                 <div className="relative h-[400px] lg:h-[600px] bg-gradient-to-br from-[#101010] to-[#050505] border-b lg:border-b-0 lg:border-r border-white/5 flex items-center justify-center p-8 overflow-hidden">
                   {/* Glowing background */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none bg-glow-gpu" />
 
                   {/* Browser frame */}
                   <div className="w-full max-w-md bg-[#0D0D0D] border border-white/10 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative z-10 flex flex-col h-[280px] lg:h-[420px]">

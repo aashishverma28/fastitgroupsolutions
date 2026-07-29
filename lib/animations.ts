@@ -36,13 +36,13 @@ export const revealHeadline = (el: HTMLElement, trigger?: Element) => {
     (line as HTMLElement).style.overflow = "hidden"
   })
   return gsap.fromTo(split.words,
-    { y: "105%", opacity: 0, rotateX: -40 },
+    { y: "105%", opacity: 0 },
     {
-      y: "0%", opacity: 1, rotateX: 0,
-      duration: 0.95, ease: "power4.out",
-      stagger: 0.045,
+      y: "0%", opacity: 1,
+      duration: 0.8, ease: "power3.out",
+      stagger: 0.03,
       scrollTrigger: trigger ? {
-        trigger, start: "top 82%", once: true,
+        trigger, start: "top 85%", once: true,
       } : undefined,
       onComplete: () => split.revert(),
     }
@@ -51,24 +51,23 @@ export const revealHeadline = (el: HTMLElement, trigger?: Element) => {
 
 // 3D CARD TILT
 export const initCardTilt = (card: HTMLElement) => {
-  const MAX = 8
+  const MAX = 6
   const shine = card.querySelector<HTMLElement>(".card-shine")
   const onMove = (e: MouseEvent) => {
     const r = card.getBoundingClientRect()
-    const rY = ((e.clientX - r.left - r.width/2) / (r.width/2)) * MAX
-    const rX = -((e.clientY - r.top - r.height/2) / (r.height/2)) * MAX
-    gsap.to(card, { rotateX: rX, rotateY: rY, transformPerspective: 700, duration: 0.35, ease: "power2.out" })
+    const dX = ((e.clientX - r.left - r.width/2) / (r.width/2)) * MAX
+    const dY = ((e.clientY - r.top - r.height/2) / (r.height/2)) * MAX
+    gsap.to(card, { x: dX, y: dY, duration: 0.35, ease: "power2.out" })
     if (shine) {
       const pX = ((e.clientX - r.left) / r.width) * 100
       const pY = ((e.clientY - r.top) / r.height) * 100
-      shine.style.background = `radial-gradient(circle at ${pX}% ${pY}%, rgba(255,255,255,0.12) 0%, transparent 55%)`
+      shine.style.background = `radial-gradient(circle at ${pX}% ${pY}%, rgba(255,255,255,0.08) 0%, transparent 55%)`
     }
   }
   const onLeave = () => {
-    gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "power2.out" })
+    gsap.to(card, { x: 0, y: 0, duration: 0.5, ease: "power2.out" })
     if (shine) shine.style.background = "transparent"
   }
-  card.style.transformStyle = "preserve-3d"
   card.style.willChange = "transform"
   card.addEventListener("mousemove", onMove)
   card.addEventListener("mouseleave", onLeave)
@@ -146,12 +145,12 @@ export const initServiceRow = (row: HTMLElement) => {
 // STAGGERED CARD ENTRANCE
 export const staggerCards = (cards: NodeListOf<Element> | HTMLElement[]) => {
   gsap.fromTo(cards,
-    { y: 70, opacity: 0, rotateX: -15, scale: 0.96, transformPerspective: 500 },
+    { y: 40, opacity: 0 },
     {
-      y: 0, opacity: 1, rotateX: 0, scale: 1,
-      duration: 0.85, ease: "power3.out",
-      stagger: { amount: 0.55, ease: "power2.out" },
-      scrollTrigger: { trigger: cards[0], start: "top 85%", once: true },
+      y: 0, opacity: 1,
+      duration: 0.7, ease: "power3.out",
+      stagger: 0.08,
+      scrollTrigger: { trigger: cards[0], start: "top 90%", once: true },
     }
   )
 }

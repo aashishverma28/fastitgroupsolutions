@@ -33,7 +33,7 @@ export function AboutCTA() {
   return (
     <section ref={containerRef} className="bg-[#050505] py-[160px] px-6 text-white text-center relative overflow-hidden border-t border-white/5">
       {/* Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#E8156D]/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#E8156D]/10 blur-[150px] rounded-full pointer-events-none bg-glow-gpu" />
 
       <div className="container mx-auto relative z-10">
         <span className="animate-item block font-satoshi font-bold text-[14px] uppercase tracking-[0.2em] mb-8 opacity-80">
