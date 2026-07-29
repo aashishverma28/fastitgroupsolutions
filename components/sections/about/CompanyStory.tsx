@@ -3,8 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Canvas } from "@react-three/fiber"
-import { Float, MeshDistortMaterial } from "@react-three/drei"
+
 
 export function CompanyStory() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -162,20 +161,8 @@ export function CompanyStory() {
             </p>
           </div>
 
-          {/* 3D ELEMENT FOR THIS SECTION */}
-          <div className="absolute right-0 bottom-0 w-[150px] h-[200px] hidden lg:block pointer-events-none">
-            <Canvas camera={{ position: [0, 0, 5] }}>
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} color="#E8156D" />
-              <Float speed={1.5} rotationIntensity={1} floatIntensity={1}>
-                <mesh>
-                  <coneGeometry args={[1, 2, 32]} />
-                  <MeshDistortMaterial color="#E8156D" speed={2} distort={0.2} />
-                </mesh>
-              </Float>
-              <pointLight position={[0, -2, 0]} intensity={2} color="#E8156D" />
-            </Canvas>
-          </div>
+          {/* Decorative 2D Glow Spot */}
+          <div className="absolute right-0 bottom-0 w-[200px] h-[200px] bg-[#E8156D]/5 blur-[60px] rounded-full pointer-events-none hidden lg:block" />
         </div>
       </div>
     </section>

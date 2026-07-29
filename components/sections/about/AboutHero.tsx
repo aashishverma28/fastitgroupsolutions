@@ -1,112 +1,8 @@
 "use client"
 
-import { useEffect, useRef, Suspense, useState } from "react"
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { 
-  MeshDistortMaterial, 
-  MeshTransmissionMaterial, 
-  Float, 
-  Sparkles, 
-  Environment,
-  Text,
-  Center,
-  PerspectiveCamera,
-  ContactShadows
-} from "@react-three/drei"
-import * as THREE from "three"
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
-
-function InteractiveCrystal() {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouse({
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: -(e.clientY / window.innerHeight - 0.5) * 2
-      })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime()
-    
-    // Smooth rotation
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, mouse.y * 0.5 + time * 0.1, 0.1)
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, mouse.x * 0.5 + time * 0.15, 0.1)
-    
-    // Subtle float
-    meshRef.current.position.y = Math.sin(time * 0.5) * 0.2
-  })
-
-  return (
-    <group>
-      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-        {/* Core Crystal */}
-        <mesh ref={meshRef}>
-          <octahedronGeometry args={[2, 0]} />
-          <MeshTransmissionMaterial 
-            backside
-            samples={16}
-            resolution={512}
-            transmission={1}
-            roughness={0.1}
-            thickness={2}
-            ior={1.5}
-            chromaticAberration={0.1}
-            anisotropy={0.1}
-            distortion={0.5}
-            distortionScale={0.5}
-            temporalDistortion={0.1}
-            color="#E8156D"
-          />
-        </mesh>
-      </Float>
-
-      {/* Orbiting Blobs */}
-      <Float speed={3} rotationIntensity={2} floatIntensity={2}>
-        <mesh position={[4, 2, -3]}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <MeshDistortMaterial color="#FFD93D" speed={2} distort={0.4} />
-        </mesh>
-      </Float>
-
-      <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-        <mesh position={[-5, -1, -2]}>
-          <sphereGeometry args={[0.8, 32, 32]} />
-          <MeshDistortMaterial color="#A8D8EA" speed={1.5} distort={0.6} />
-        </mesh>
-      </Float>
-
-      {/* Background Glows */}
-      <Sparkles count={200} scale={[20, 20, 20]} size={2} speed={0.4} color="#E8156D" />
-      <Sparkles count={100} scale={[15, 15, 15]} size={4} speed={0.2} color="#FFD93D" />
-    </group>
-  )
-}
-
-function Scene() {
-  return (
-    <>
-      <color attach="background" args={["#0A0A0A"]} />
-      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
-      
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
-      <pointLight position={[-10, -10, -10]} color="#E8156D" intensity={1} />
-      
-      <Suspense fallback={null}>
-        <InteractiveCrystal />
-        <Environment preset="night" />
-        <ContactShadows position={[0, -4, 0]} opacity={0.4} scale={20} blur={2.5} far={4.5} />
-      </Suspense>
-    </>
-  )
-}
 
 export function AboutHero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -151,12 +47,9 @@ export function AboutHero() {
 
   return (
     <section ref={containerRef} id="about-hero" className="relative w-full h-[120vh] bg-[#050505] overflow-hidden">
-      {/* 3D Scene Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas shadows dpr={[1, 2]}>
-          <Scene />
-        </Canvas>
-      </div>
+      {/* 2D Background Grid & Glow */}
+      <div className="absolute inset-0 bg-grid-pattern z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#E8156D]/5 via-[#FFD93D]/5 to-transparent blur-[120px] rounded-full pointer-events-none z-0" />
 
       {/* Content Overlay */}
       <div 

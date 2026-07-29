@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { HeroScene } from "@/components/3d/HeroScene"
 import { MagneticButton } from "@/components/ui/MagneticButton"
 import { revealHeadline, glitchText, initColorMorph, staggerCards } from "@/lib/animations"
 import Link from "next/link"
@@ -48,9 +47,10 @@ export default function Home() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           HERO SECTION (DARK)
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="hero" className="relative w-full h-screen flex flex-col justify-center overflow-hidden bg-[#0A0A0A]">
-        {/* 3D Background */}
-        <HeroScene />
+      <section id="hero" className="relative w-full h-screen flex flex-col justify-center overflow-hidden bg-[#050505]">
+        {/* 2D Background Grid & Ambient Glow */}
+        <div className="absolute inset-0 bg-grid-pattern z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#E8156D]/10 via-[#FFD93D]/5 to-transparent blur-[120px] rounded-full pointer-events-none z-0" />
         
         {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full pointer-events-none">

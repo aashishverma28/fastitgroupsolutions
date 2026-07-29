@@ -1,64 +1,8 @@
 "use client"
 
-import { useEffect, useRef, Suspense } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { MeshDistortMaterial, Float, Environment, ContactShadows, MeshTransmissionMaterial, Html } from "@react-three/drei"
-import * as THREE from "three"
+import { useEffect, useRef } from "react"
 import { revealHeadline, initCardTilt, staggerCards } from "@/lib/animations"
 import Link from "next/link"
-
-function ProjectPreview3D() {
-  const meshRef = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime()
-    meshRef.current.rotation.x = Math.sin(time * 0.5) * 0.1
-    meshRef.current.rotation.y = Math.cos(time * 0.5) * 0.1
-  })
-
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-        <mesh ref={meshRef}>
-          <boxGeometry args={[3.2, 2.2, 0.1]} />
-          <MeshTransmissionMaterial 
-            transmission={0.9} 
-            thickness={0.5} 
-            roughness={0.1} 
-            chromaticAberration={0.06}
-            anisotropy={0.1}
-            distortion={0.1}
-            color="#E8156D"
-          />
-          {/* Embedding the actual website */}
-          <Html
-            transform
-            occlude
-            distanceFactor={2}
-            position={[0, 0, 0.06]}
-            style={{
-              width: '800px',
-              height: '500px',
-              backgroundColor: '#000',
-              overflow: 'hidden',
-              borderRadius: '10px'
-            }}
-          >
-            <iframe 
-              src="https://fastitmusic.in" 
-              className="w-full h-full border-none"
-              title="Fastit Music India Preview"
-            />
-          </Html>
-        </mesh>
-      </Float>
-      <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
-      <Environment preset="city" />
-    </>
-  )
-}
 
 const projects = [
   { 
@@ -99,13 +43,34 @@ export default function Work() {
             <div key={proj.id} className="group relative bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-[40px] overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] hover:border-white/10 transition-all duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 
-                {/* 3D PREVIEW SECTION */}
-                <div className="relative h-[400px] lg:h-[600px] bg-gradient-to-br from-[#101010] to-[#050505] border-b lg:border-b-0 lg:border-r border-white/5">
-                  <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                    <Suspense fallback={null}>
-                      <ProjectPreview3D />
-                    </Suspense>
-                  </Canvas>
+                {/* 2D BROWSER MOCKUP PREVIEW */}
+                <div className="relative h-[400px] lg:h-[600px] bg-gradient-to-br from-[#101010] to-[#050505] border-b lg:border-b-0 lg:border-r border-white/5 flex items-center justify-center p-8 overflow-hidden">
+                  {/* Glowing background */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none" />
+
+                  {/* Browser frame */}
+                  <div className="w-full max-w-md bg-[#0D0D0D] border border-white/10 rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative z-10 flex flex-col h-[280px] lg:h-[420px]">
+                    {/* Header bar */}
+                    <div className="bg-white/[0.02] border-b border-white/5 px-4 py-3 flex items-center justify-between">
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                        <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                      </div>
+                      <div className="bg-black/30 rounded-lg px-6 py-1 text-[10px] text-white/30 font-satoshi font-semibold tracking-wider flex items-center gap-1.5 select-none max-w-[200px] truncate">
+                        fastitmusic.in
+                      </div>
+                      <div className="w-10" /> {/* Spacer */}
+                    </div>
+                    {/* Content */}
+                    <div className="flex-1 w-full bg-[#050505] overflow-hidden relative">
+                      <iframe 
+                        src="https://fastitmusic.in" 
+                        className="w-full h-full border-none select-none pointer-events-none"
+                        title="Fastit Music India Preview"
+                      />
+                    </div>
+                  </div>
                   
                   {/* Floating Badge */}
                   <div className="absolute top-8 left-8 bg-[#E8156D] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest z-10 shadow-[0_5px_15px_rgba(232,21,109,0.4)] animate-pulse">
@@ -141,13 +106,6 @@ export default function Work() {
               <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-[#E8156D] opacity-[0.05] blur-[120px] pointer-events-none" />
             </div>
           ))}
-        </div>
-        
-        {/* Secondary Info */}
-        <div className="mt-32 text-center max-w-2xl mx-auto">
-          <p className="text-white/30 font-body italic text-lg">
-            More projects are being curated. At Fastit, we believe in showing only what we're ready to stand behind 100%.
-          </p>
         </div>
       </div>
     </main>

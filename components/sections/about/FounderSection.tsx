@@ -4,9 +4,6 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { initCardTilt } from "@/lib/animations"
-import { Canvas } from "@react-three/fiber"
-import { Float, MeshDistortMaterial } from "@react-three/drei"
-
 import Image from "next/image"
 
 export function FounderSection() {
@@ -176,23 +173,8 @@ export function FounderSection() {
               <span className="text-[10px] font-bold text-[#FFD93D] tracking-widest uppercase mt-4">📍 Golaghat, Assam</span>
             </div>
             
-            {/* 3D FLOATING OBJECT */}
-            <div className="absolute top-1/2 -right-[120px] -translate-y-1/2 w-[140px] h-[140px] z-10 pointer-events-none">
-              <Canvas camera={{ position: [0, 0, 5] }}>
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} />
-                <Float speed={3} rotationIntensity={1.5} floatIntensity={1.5}>
-                  <mesh rotation={[1, 1, 1]}>
-                    <boxGeometry args={[1.2, 1.2, 1.2]} />
-                    <MeshDistortMaterial 
-                      color="#E8156D" 
-                      speed={2.2} 
-                      distort={0.4}
-                    />
-                  </mesh>
-                </Float>
-              </Canvas>
-            </div>
+            {/* Decorative 2D Glow */}
+            <div className="absolute -top-[50px] -right-[50px] w-[180px] h-[180px] bg-[#E8156D]/5 blur-[60px] rounded-full pointer-events-none -z-10" />
           </div>
         </div>
       </div>

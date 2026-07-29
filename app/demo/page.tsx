@@ -1,50 +1,11 @@
 "use client"
 
-import { useEffect, useRef, Suspense, useState } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Float, Environment, MeshTransmissionMaterial, ContactShadows } from "@react-three/drei"
-import * as THREE from "three"
+import { useEffect, useRef, useState } from "react"
 import { revealHeadline, staggerCards, initCardTilt } from "@/lib/animations"
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 import Link from "next/link"
 import { Loader2 } from "lucide-react"
-
-function DemoScene() {
-  const meshRef = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime()
-    meshRef.current.rotation.x = Math.sin(time * 0.2) * 0.1
-    meshRef.current.rotation.y = Math.cos(time * 0.2) * 0.1
-  })
-
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} />
-      <Float speed={2.5} rotationIntensity={0.8} floatIntensity={1}>
-        <mesh ref={meshRef}>
-          <octahedronGeometry args={[2, 0]} />
-          <MeshTransmissionMaterial 
-            backside
-            samples={4}
-            thickness={2}
-            chromaticAberration={0.1}
-            anisotropy={0.1}
-            distortion={0.1}
-            distortionScale={0.1}
-            temporalDistortion={0.1}
-            transmission={0.95}
-            color="#E8156D"
-          />
-        </mesh>
-      </Float>
-      <ContactShadows position={[0, -3.5, 0]} opacity={0.3} scale={15} blur={3} far={4} />
-      <Environment preset="city" />
-    </>
-  )
-}
 
 interface DemoProject {
   id: string
@@ -89,30 +50,42 @@ export default function DemoPage() {
 
   return (
     <main className="relative w-full min-h-screen bg-[#050505] text-white overflow-hidden pt-44 pb-20">
+      {/* Background Decorative Grid */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.4] pointer-events-none" />
+
       {/* Hero Section */}
-      <section className="container mx-auto px-6 mb-32 relative">
+      <section className="container mx-auto px-6 mb-32 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
           <div>
             <h1 ref={headlineRef} className="text-6xl md:text-8xl font-display font-extrabold leading-[0.9] tracking-tighter uppercase mb-8">
               Explore Our <br />
               <span className="text-[#E8156D] italic font-light lowercase">Prototypes.</span>
             </h1>
-            <p className="text-xl text-white/50 max-w-lg font-body leading-relaxed">
+            <p className="text-xl text-white/55 max-w-lg font-body leading-relaxed">
               A curated collection of internal experiments, client demos, and concept designs that push the boundaries of IT solutions.
             </p>
           </div>
-          <div className="h-[400px] lg:h-[600px] relative">
-            <Canvas camera={{ position: [0, 0, 8], fov: 40 }}>
-              <Suspense fallback={null}>
-                <DemoScene />
-              </Suspense>
-            </Canvas>
+          <div className="relative h-[300px] lg:h-[450px] flex items-center justify-center">
+            {/* Glowing background */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#E8156D]/10 blur-[80px] rounded-full pointer-events-none" />
+            
+            {/* Grid graphic */}
+            <div className="w-full max-w-sm aspect-[4/3] bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative z-10 flex flex-col p-8 items-center justify-center shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+              <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+              <div className="relative z-10 text-center">
+                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-black/25">
+                  <svg className="w-8 h-8 text-[#E8156D]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <h3 className="font-display font-bold text-xl text-white uppercase tracking-wider mb-2">Fastit Labs</h3>
+                <p className="text-white/40 text-xs font-satoshi tracking-widest uppercase">Internal Research & Development</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Demo Grid */}
-      <section className="container mx-auto px-6">
+      <section className="container mx-auto px-6 relative z-10">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 gap-6 text-white/20">
             <Loader2 className="w-16 h-16 animate-spin text-[#E8156D]" />
@@ -145,7 +118,7 @@ export default function DemoPage() {
                     {demo.category}
                   </span>
                   <h3 className="text-3xl font-display font-bold text-white uppercase tracking-tight mb-4">{demo.title}</h3>
-                  <p className="text-white/60 text-lg leading-relaxed mb-8">
+                  <p className="text-white/65 text-lg leading-relaxed mb-8">
                     {demo.description}
                   </p>
                   <Link 
