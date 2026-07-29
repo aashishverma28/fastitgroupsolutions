@@ -98,6 +98,15 @@ export default function AdminDashboard() {
                 </div>
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
+              <Link href="/sysadmin/work" className="flex items-center justify-between p-6 rounded-[30px] bg-white/[0.03] border border-white/5 hover:bg-white hover:text-black transition-all group">
+                <div className="flex items-center gap-5">
+                  <div className="bg-purple-500 w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-purple-500/20 text-white">
+                    <Plus className="w-5 h-5" />
+                  </div>
+                  <span className="font-display font-bold uppercase tracking-widest text-[10px]">Add Work Project</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
               <Link href="/sysadmin/board" className="flex items-center justify-between p-6 rounded-[30px] bg-white/[0.03] border border-white/5 hover:bg-white hover:text-black transition-all group">
                 <div className="flex items-center gap-5">
                   <div className="bg-[#FFD93D] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-[#FFD93D]/20 text-black">
