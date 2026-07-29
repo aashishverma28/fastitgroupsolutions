@@ -68,6 +68,7 @@ export default function Work() {
                         src="https://fastitmusic.in" 
                         className="w-full h-full border-none select-none pointer-events-none"
                         title="Fastit Music India Preview"
+                        loading="lazy"
                       />
                     </div>
                   </div>

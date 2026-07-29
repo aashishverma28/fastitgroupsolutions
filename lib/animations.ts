@@ -51,13 +51,13 @@ export const revealHeadline = (el: HTMLElement, trigger?: Element) => {
 
 // 3D CARD TILT
 export const initCardTilt = (card: HTMLElement) => {
-  const MAX = 10
+  const MAX = 8
+  const shine = card.querySelector<HTMLElement>(".card-shine")
   const onMove = (e: MouseEvent) => {
     const r = card.getBoundingClientRect()
     const rY = ((e.clientX - r.left - r.width/2) / (r.width/2)) * MAX
     const rX = -((e.clientY - r.top - r.height/2) / (r.height/2)) * MAX
     gsap.to(card, { rotateX: rX, rotateY: rY, transformPerspective: 700, duration: 0.35, ease: "power2.out" })
-    const shine = card.querySelector<HTMLElement>(".card-shine")
     if (shine) {
       const pX = ((e.clientX - r.left) / r.width) * 100
       const pY = ((e.clientY - r.top) / r.height) * 100
@@ -65,8 +65,7 @@ export const initCardTilt = (card: HTMLElement) => {
     }
   }
   const onLeave = () => {
-    gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" })
-    const shine = card.querySelector<HTMLElement>(".card-shine")
+    gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "power2.out" })
     if (shine) shine.style.background = "transparent"
   }
   card.style.transformStyle = "preserve-3d"
@@ -191,25 +190,7 @@ export const initParallax = () => {
 
 // PAGE BACKGROUND COLOR MORPH
 export const initColorMorph = () => {
-  [
-    ["#hero", "#050505"],
-    ["#services", "#080808"],
-    ["#portfolio", "#050505"],
-    ["#about-snap", "#050505"],
-    ["#process", "#080808"],
-    ["#honest-board", "#070707"],
-    ["#testimonials", "#080808"],
-    ["#cta", "#050505"],
-  ].forEach(([selector, color]) => {
-    const el = document.querySelector(selector)
-    if (!el) return
-    ScrollTrigger.create({
-      trigger: el,
-      start: "top 55%",
-      onEnter: () => gsap.to("body", { backgroundColor: color, duration: 0.9, ease: "power2.inOut" }),
-      onEnterBack: () => gsap.to("body", { backgroundColor: color, duration: 0.9, ease: "power2.inOut" }),
-    })
-  })
+  // Disabled for major scroll performance boost. Body bg is locked to #050505.
 }
 
 // LIQUID IMAGE HOVER
