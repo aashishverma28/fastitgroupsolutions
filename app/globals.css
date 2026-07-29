@@ -53,9 +53,4 @@
   }
 }
 
-/* Hide default cursor globally on desktop if CustomCursor is active */
-@media (min-width: 768px) {
-  * {
-    cursor: none !important;
-  }
-}
+
