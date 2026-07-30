@@ -7,7 +7,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 async function createAdmin() {
   const { data, error } = await supabase.auth.signUp({
-    email: 'mainadmin01@fastit.com',
+    email: 'mainadmin01@fastitgroup.in',
     password: 'Aashish@07',
   })
 

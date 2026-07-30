@@ -70,7 +70,7 @@ export default function Contact() {
             </div>
             
             <div className="pt-8 border-t border-white/5">
-              <a href="mailto:hello@fastitgroup.com" className="text-2xl md:text-3xl font-display font-bold text-white hover:text-[#E8156D] transition-colors block mb-2">hello@fastitgroup.com</a>
+              <a href="mailto:hello@fastitgroup.in" className="text-2xl md:text-3xl font-display font-bold text-white hover:text-[#E8156D] transition-colors block mb-2">hello@fastitgroup.in</a>
               <a href="tel:+910000000000" className="text-2xl md:text-3xl font-display font-bold text-white hover:text-[#E8156D] transition-colors">+91 000 000 0000</a>
             </div>
           </div>

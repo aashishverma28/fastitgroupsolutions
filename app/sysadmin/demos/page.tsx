@@ -335,7 +335,7 @@ export default function DemosPage() {
                     type="text" 
                     value={currentDemo?.demo_link || ""}
                     onChange={(e) => setCurrentDemo({ ...currentDemo, demo_link: e.target.value })}
-                    placeholder="https://prototype.fastit.com/..."
+                    placeholder="https://prototype.fastitgroup.in/..."
                     className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-4 text-white text-sm focus:outline-none focus:border-[#E8156D] transition-all placeholder:text-white/10"
                   />
                 </div>

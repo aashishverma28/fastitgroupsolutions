@@ -45,7 +45,7 @@ export default function AdminLogin() {
     // Map username to internal email
     let loginEmail = username
     if (username.toLowerCase() === "mainadmin") {
-      loginEmail = "mainadmin@fastit.com"
+      loginEmail = "mainadmin@fastitgroup.in"
     }
 
     try {

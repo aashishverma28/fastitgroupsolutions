@@ -12,7 +12,7 @@ async function testLogin() {
   // Simulating the internal mapping in the app
   let loginEmail = usernameInput
   if (usernameInput.toLowerCase() === "mainadmin01") {
-    loginEmail = "mainadmin01@fastit.com"
+    loginEmail = "mainadmin01@fastitgroup.in"
   }
 
   console.log(`Testing login for username: ${usernameInput} (mapped to: ${loginEmail})...`)
