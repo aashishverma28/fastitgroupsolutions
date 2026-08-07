@@ -48,10 +48,37 @@ export default function Contact() {
 
       setSubmittedName(name)
       setStatus("success")
+
+      const tempFields = {
+        name,
+        company: company || null,
+        service: service || null,
+        email
+      }
+
       setName("")
       setCompany("")
       setService("")
       setEmail("")
+
+      // Dispatch confirmation email asynchronously (fails gracefully in sandbox if unverified)
+      fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tempFields)
+      }).then(async (res) => {
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}))
+          console.warn("Email confirmation dispatch failed:", errData.error || res.statusText)
+        } else {
+          console.log("Email confirmation dispatched successfully.")
+        }
+      }).catch((err) => {
+        console.warn("Email confirmation dispatch network error:", err)
+      })
+
     } catch (err: any) {
       console.error("Error sending inquiry:", err)
       setStatus("error")
