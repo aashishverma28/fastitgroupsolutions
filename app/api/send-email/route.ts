@@ -14,7 +14,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email provider is not configured" }, { status: 500 })
     }
 
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "Fastit Group <onboarding@resend.dev>"
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "Fastit Group <team@fastitgroup.in>"
 
     // Premium designed HTML template matching Fastit's aesthetic
     const htmlContent = `
