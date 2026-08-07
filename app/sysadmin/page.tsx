@@ -8,7 +8,8 @@ import {
   TrendingUp, 
   Clock,
   ArrowUpRight,
-  Plus
+  Plus,
+  Inbox
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import Link from "next/link"
@@ -17,19 +18,22 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({
     services: 0,
     team: 0,
+    inquiries: 0,
     recentActions: []
   })
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [servicesRes, teamRes] = await Promise.all([
+      const [servicesRes, teamRes, inquiriesRes] = await Promise.all([
         supabase.from('services').select('*', { count: 'exact', head: true }),
-        supabase.from('team_members').select('*', { count: 'exact', head: true })
+        supabase.from('team_members').select('*', { count: 'exact', head: true }),
+        supabase.from('inquiries').select('*', { count: 'exact', head: true })
       ])
 
       setStats({
         services: servicesRes.count || 0,
         team: teamRes.count || 0,
+        inquiries: inquiriesRes.count || 0,
         recentActions: []
       })
     }
@@ -37,9 +41,9 @@ export default function AdminDashboard() {
   }, [])
 
   const statCards = [
-    { title: "Total Services", value: stats.services, icon: Briefcase, color: "text-[#E8156D]", bg: "bg-[#E8156D]/10" },
-    { title: "Board Members", value: stats.team, icon: Users, color: "text-[#FFD93D]", bg: "bg-[#FFD93D]/10" },
-    { title: "Active Inquiries", value: "0", icon: TrendingUp, color: "text-[#4ADE80]", bg: "bg-[#4ADE80]/10" },
+    { title: "Total Services", value: stats.services, icon: Briefcase, color: "text-[#E8156D]", bg: "bg-[#E8156D]/10", href: "/sysadmin/services" },
+    { title: "Board Members", value: stats.team, icon: Users, color: "text-[#FFD93D]", bg: "bg-[#FFD93D]/10", href: "/sysadmin/board" },
+    { title: "Active Inquiries", value: stats.inquiries, icon: TrendingUp, color: "text-[#4ADE80]", bg: "bg-[#4ADE80]/10", href: "/sysadmin/inquiries" },
     { title: "Last Updated", value: "Just now", icon: Clock, color: "text-blue-400", bg: "bg-blue-400/10" },
   ]
 
@@ -66,21 +70,37 @@ export default function AdminDashboard() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {statCards.map((stat, i) => (
-            <div key={i} className="group relative bg-white/[0.03] border border-white/5 p-10 rounded-[40px] hover:border-white/10 transition-all duration-500 overflow-hidden">
-              <div className="flex items-center justify-between mb-8">
-                <div className={`${stat.bg} ${stat.color} w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:rotate-12`}>
-                  <stat.icon className="w-6 h-6" />
+          {statCards.map((stat, i) => {
+            const cardContent = (
+              <>
+                <div className="flex items-center justify-between mb-8">
+                  <div className={`${stat.bg} ${stat.color} w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:rotate-12`}>
+                    <stat.icon className="w-6 h-6" />
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-gray-700 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-gray-700 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em] mb-1">{stat.title}</p>
+                <h3 className="text-4xl font-display font-black text-white uppercase tracking-tighter">{stat.value}</h3>
+                
+                {/* Subtle background glow */}
+                <div className="absolute bottom-[-20%] right-[-10%] w-32 h-32 opacity-0 group-hover:opacity-100 bg-white/5 blur-[40px] rounded-full transition-opacity duration-700" />
+              </>
+            )
+
+            if (stat.href) {
+              return (
+                <Link key={i} href={stat.href} className="group relative bg-white/[0.03] border border-white/5 p-10 rounded-[40px] hover:border-white/10 transition-all duration-500 overflow-hidden block cursor-pointer">
+                  {cardContent}
+                </Link>
+              )
+            }
+
+            return (
+              <div key={i} className="group relative bg-white/[0.03] border border-white/5 p-10 rounded-[40px] hover:border-white/10 transition-all duration-500 overflow-hidden">
+                {cardContent}
               </div>
-              <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em] mb-1">{stat.title}</p>
-              <h3 className="text-4xl font-display font-black text-white uppercase tracking-tighter">{stat.value}</h3>
-              
-              {/* Subtle background glow */}
-              <div className="absolute bottom-[-20%] right-[-10%] w-32 h-32 opacity-0 group-hover:opacity-100 bg-white/5 blur-[40px] rounded-full transition-opacity duration-700" />
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Quick Actions & Recent Activity */}
@@ -122,6 +142,15 @@ export default function AdminDashboard() {
                     <Plus className="w-5 h-5" />
                   </div>
                   <span className="font-display font-bold uppercase tracking-widest text-[10px]">Archive Demo</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+              <Link href="/sysadmin/inquiries" className="flex items-center justify-between p-6 rounded-[30px] bg-white/[0.03] border border-white/5 hover:bg-white hover:text-black transition-all group">
+                <div className="flex items-center gap-5">
+                  <div className="bg-[#4ADE80] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-[#4ADE80]/20 text-black">
+                    <Inbox className="w-5 h-5 text-black" />
+                  </div>
+                  <span className="font-display font-bold uppercase tracking-widest text-[10px]">View Inquiries</span>
                 </div>
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>

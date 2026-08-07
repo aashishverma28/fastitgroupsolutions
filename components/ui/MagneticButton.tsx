@@ -10,9 +10,10 @@ interface Props {
   className?: string
   onClick?: () => void
   type?: "button" | "submit"
+  disabled?: boolean
 }
 
-export function MagneticButton({ children, href, className = "", onClick, type = "button" }: Props) {
+export function MagneticButton({ children, href, className = "", onClick, type = "button", disabled }: Props) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null)
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export function MagneticButton({ children, href, className = "", onClick, type =
   }
 
   return (
-    <button ref={ref as any} type={type} className={baseClasses} onClick={onClick}>
+    <button ref={ref as any} type={type} className={baseClasses} onClick={onClick} disabled={disabled}>
       <span className="relative z-10 flex items-center gap-2">{children}</span>
     </button>
   )

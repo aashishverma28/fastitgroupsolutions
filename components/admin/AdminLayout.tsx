@@ -14,7 +14,8 @@ import {
   Bell,
   Search,
   Globe,
-  Folder
+  Folder,
+  Inbox
 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { gsap } from "gsap"
@@ -47,6 +48,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: "Our Work", icon: Folder, href: "/sysadmin/work" },
     { name: "Demo Projects", icon: Globe, href: "/sysadmin/demos" },
     { name: "Team Board", icon: Users, href: "/sysadmin/board" },
+    { name: "Inquiries", icon: Inbox, href: "/sysadmin/inquiries" },
     { name: "Site Settings", icon: Settings, href: "/sysadmin/settings" },
   ]
 
