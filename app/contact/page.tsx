@@ -16,6 +16,8 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [submittedName, setSubmittedName] = useState("")
+  const [emailStatus, setEmailStatus] = useState<"idle" | "sending" | "sent" | "failed">("idle")
+  const [emailError, setEmailError] = useState("")
 
   useEffect(() => {
     if (headlineRef.current) revealHeadline(headlineRef.current)
@@ -31,6 +33,8 @@ export default function Contact() {
     setLoading(true)
     setStatus("idle")
     setErrorMessage("")
+    setEmailStatus("idle")
+    setEmailError("")
 
     try {
       const { error } = await supabase
@@ -48,6 +52,7 @@ export default function Contact() {
 
       setSubmittedName(name)
       setStatus("success")
+      setEmailStatus("sending")
 
       const tempFields = {
         name,
@@ -61,7 +66,7 @@ export default function Contact() {
       setService("")
       setEmail("")
 
-      // Dispatch confirmation email asynchronously (fails gracefully in sandbox if unverified)
+      // Dispatch confirmation email
       fetch("/api/send-email", {
         method: "POST",
         headers: {
@@ -69,13 +74,18 @@ export default function Contact() {
         },
         body: JSON.stringify(tempFields)
       }).then(async (res) => {
+        const data = await res.json().catch(() => ({}))
         if (!res.ok) {
-          const errData = await res.json().catch(() => ({}))
-          console.warn("Email confirmation dispatch failed:", errData.error || res.statusText)
+          setEmailStatus("failed")
+          setEmailError(data.error || res.statusText)
+          console.warn("Email confirmation dispatch failed:", data.error || res.statusText)
         } else {
+          setEmailStatus("sent")
           console.log("Email confirmation dispatched successfully.")
         }
       }).catch((err) => {
+        setEmailStatus("failed")
+        setEmailError(err.message || "Network error")
         console.warn("Email confirmation dispatch network error:", err)
       })
 
@@ -112,9 +122,25 @@ export default function Contact() {
                 <p className="text-gray-400 font-body text-base max-w-sm mx-auto leading-relaxed">
                   Thank you, <span className="text-[#FFD93D] font-bold">{submittedName}</span>. Your request has been successfully queued. Our architects will contact you shortly.
                 </p>
+                
+                <div className="text-xs font-body pt-2">
+                  {emailStatus === "sending" && (
+                    <span className="text-gray-500 animate-pulse">Dispatching email confirmation...</span>
+                  )}
+                  {emailStatus === "sent" && (
+                    <span className="text-green-400">✓ Confirmation email dispatched successfully.</span>
+                  )}
+                  {emailStatus === "failed" && (
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-xl max-w-xs mx-auto text-left space-y-1 mt-2">
+                      <p className="font-bold text-center">Email Failed</p>
+                      <p className="text-[10px] leading-normal">{emailError}</p>
+                    </div>
+                  )}
+                </div>
+
                 <button
                   onClick={() => setStatus("idle")}
-                  className="text-xs font-bold uppercase tracking-[0.2em] text-[#FFD93D] hover:underline transition-colors pt-4 block mx-auto cursor-pointer"
+                  className="text-xs font-bold uppercase tracking-[0.2em] text-[#FFD93D] hover:underline transition-colors pt-6 block mx-auto cursor-pointer"
                 >
                   Send another message
                 </button>
